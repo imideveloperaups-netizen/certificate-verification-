@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
 <title>Certificate Verification</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -34,8 +32,6 @@ body {
     overflow: hidden;
 }
 
-/* HEADER */
-
 .header {
     background: #111827;
     color: white;
@@ -43,32 +39,23 @@ body {
     padding: 35px 20px;
 }
 
-/* LOGO */
-
 .logo {
-    width: 110px;
-    height: 110px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     background: white;
     margin: 0 auto 18px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
-
-    box-shadow: 0 3px 12px rgba(0,0,0,0.30);
 }
 
 .logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    display: block;
 }
-
-/* TITLE */
 
 .header h1 {
     font-size: 25px;
@@ -81,8 +68,6 @@ body {
     font-size: 14px;
 }
 
-/* STATUS */
-
 .status {
     text-align: center;
     padding: 25px 20px 10px;
@@ -90,21 +75,13 @@ body {
 
 .verified {
     display: inline-block;
-
     padding: 10px 22px;
-
     border-radius: 30px;
-
     background: #ecfdf5;
-
     color: #047857;
-
     font-weight: bold;
-
     border: 1px solid #a7f3d0;
 }
-
-/* CONTENT */
 
 .content {
     padding: 25px 30px 35px;
@@ -113,11 +90,8 @@ body {
 .info {
     display: flex;
     justify-content: space-between;
-
     gap: 20px;
-
     padding: 15px 0;
-
     border-bottom: 1px solid #e5e7eb;
 }
 
@@ -132,24 +106,15 @@ body {
     text-align: right;
 }
 
-/* FOOTER */
-
 .footer {
     text-align: center;
-
     padding: 18px;
-
     background: #f9fafb;
-
     color: #6b7280;
-
     font-size: 12px;
 }
 
-/* MOBILE */
-
 @media(max-width:500px) {
-
     .content {
         padding: 20px;
     }
@@ -162,134 +127,71 @@ body {
     .value {
         text-align: left;
     }
-
-    .logo {
-        width: 95px;
-        height: 95px;
-    }
-
-    .header h1 {
-        font-size: 21px;
-    }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="card">
 
-    <!-- HEADER -->
-
     <div class="header">
 
-        <!-- IMAGE -->
         <div class="logo">
             <img src="IMI.jpg" alt="IMI Logo">
         </div>
 
-        <h1>Certificate Verification</h1>
+        <h1>IMI DEVELOPER</h1>
 
-        <p>Official Certificate Verification System</p>
+        <p>Official Certificate Authentication Portal</p>
 
     </div>
-
-
-    <!-- STATUS -->
 
     <div class="status">
-
-        <span class="verified">
+        <div class="verified">
             ✓ CERTIFICATE VERIFIED
-        </span>
-
+        </div>
     </div>
-
-
-    <!-- INFORMATION -->
 
     <div class="content">
 
         <div class="info">
-
-            <span class="label">
-                Certificate Holder
-            </span>
-
-            <span class="value">
-                Nom Prénom
-            </span>
-
+            <span class="label">Nom & Prénom</span>
+            <span class="value">MORAD EZZAKRAOUY</span>
         </div>
 
-
         <div class="info">
-
-            <span class="label">
-                Certificate Title
-            </span>
-
-            <span class="value">
-                Certificate of Achievement
-            </span>
-
+            <span class="label">Certificate ID</span>
+            <span class="value">LPQHSE-2026-001</span>
         </div>
 
-
         <div class="info">
-
-            <span class="label">
-                Certificate ID
-            </span>
-
-            <span class="value">
-                CERT-2026-001
-            </span>
-
+            <span class="label">Formation</span>
+            <span class="value">Licence Professionnelle QHSE</span>
         </div>
 
-
         <div class="info">
-
-            <span class="label">
-                Issue Date
-            </span>
-
-            <span class="value">
-                18 September 2026
-            </span>
-
+            <span class="label">Établissement</span>
+            <span class="value">Institut de Management et d'Informatique</span>
         </div>
 
+        <div class="info">
+            <span class="label">Date d'émission</span>
+            <span class="value">17 Septembre 2026</span>
+        </div>
 
         <div class="info">
-
-            <span class="label">
-                Status
-            </span>
-
-            <span class="value">
-                Valid
-            </span>
-
+            <span class="label">Statut</span>
+            <span class="value">Authentifié</span>
         </div>
 
     </div>
 
-
-    <!-- FOOTER -->
-
     <div class="footer">
-
-        This certificate has been electronically verified.
-
+        Cette page permet de vérifier l'authenticité du certificat.
     </div>
 
 </div>
 
 </body>
-
 </html>
