@@ -74,7 +74,9 @@ body {
 }
 
 .verified {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 10px 22px;
     border-radius: 30px;
     background: #ecfdf5;
@@ -83,8 +85,21 @@ body {
     border: 1px solid #a7f3d0;
 }
 
+.check {
+    font-size: 17px;
+}
+
 .content {
-    padding: 25px 30px 35px;
+    padding: 25px 30px 20px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 5px 0 8px;
 }
 
 .info {
@@ -106,12 +121,50 @@ body {
     text-align: right;
 }
 
+.certificate-id {
+    color: #1d4ed8;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+.verification-box {
+    margin-top: 22px;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.verification-box-title {
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.verification-box p {
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.verification-reference {
+    margin-top: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #374151;
+}
+
 .footer {
     text-align: center;
     padding: 18px;
     background: #f9fafb;
     color: #6b7280;
     font-size: 12px;
+}
+
+.footer strong {
+    color: #374151;
 }
 
 @media(max-width:500px) {
@@ -149,11 +202,16 @@ body {
 
     <div class="status">
         <div class="verified">
-            ✓ CERTIFICATE VERIFIED
+            <span class="check">✓</span>
+            CERTIFICATE VERIFIED
         </div>
     </div>
 
     <div class="content">
+
+        <div class="section-title">
+            Certificate Information
+        </div>
 
         <div class="info">
             <span class="label">Nom & Prénom</span>
@@ -162,7 +220,12 @@ body {
 
         <div class="info">
             <span class="label">Certificate ID</span>
-            <span class="value">LPQHSE-26A911</span>
+            <span class="value certificate-id">LPQHSE-26A911</span>
+        </div>
+
+        <div class="info">
+            <span class="label">CIN</span>
+            <span class="value">XXXXXXXX</span>
         </div>
 
         <div class="info">
@@ -172,7 +235,9 @@ body {
 
         <div class="info">
             <span class="label">Établissement</span>
-            <span class="value">Institut de Management et d'Informatique</span>
+            <span class="value">
+                Institut de Management et d'Informatique
+            </span>
         </div>
 
         <div class="info">
@@ -185,13 +250,61 @@ body {
             <span class="value">Authentifié</span>
         </div>
 
+        <div class="verification-box">
+
+            <div class="verification-box-title">
+                ✓ Electronic Verification
+            </div>
+
+            <p>
+                Ce certificat a été vérifié électroniquement
+                à partir de son identifiant unique.
+                Les informations affichées correspondent
+                aux données enregistrées dans le système
+                de vérification.
+            </p>
+
+            <div class="verification-reference">
+                Verification Reference:
+                <strong>LPQHSE-26A911</strong>
+            </div>
+
+            <div class="verification-reference">
+                Vérifié le:
+                <strong id="verificationDate"></strong>
+            </div>
+
+        </div>
+
     </div>
 
     <div class="footer">
+        <strong>IMI DEVELOPER</strong><br>
         Cette page permet de vérifier l'authenticité du certificat.
     </div>
 
 </div>
+
+<script>
+function updateVerificationDate() {
+
+    const now = new Date();
+
+    const options = {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    };
+
+    document.getElementById("verificationDate").textContent =
+        now.toLocaleDateString("fr-FR", options);
+}
+
+updateVerificationDate();
+</script>
 
 </body>
 </html>
