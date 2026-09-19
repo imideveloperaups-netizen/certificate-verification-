@@ -1,5 +1,245 @@
-<span class="value">
-                Licence Professionnelle QHSE
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Certificate Verification | IMI Developer</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+    overflow: hidden;
+}
+
+.header {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: white;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.header h1 {
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.header p {
+    margin-top: 8px;
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+.status {
+    text-align: center;
+    padding: 25px 20px 10px;
+}
+
+.verified {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: #ecfdf5;
+    color: #047857;
+    font-weight: bold;
+    border: 1px solid #a7f3d0;
+}
+
+.content {
+    padding: 25px 30px 25px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.label {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.value {
+    font-weight: 600;
+    color: #111827;
+    text-align: right;
+}
+
+.institution {
+    text-align: center;
+    padding: 5px 20px 20px;
+    color: #374151;
+    font-size: 13px;
+}
+
+.reference {
+    margin-top: 20px;
+    padding: 14px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.reference span {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.reference strong {
+    color: #111827;
+    font-size: 14px;
+}
+
+.verify-again {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px;
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.verify-again:hover {
+    background: #1f2937;
+}
+
+.verification-note {
+    text-align: center;
+    margin-top: 15px;
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.footer {
+    text-align: center;
+    padding: 18px;
+    background: #f9fafb;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+@media(max-width:500px) {
+
+    .content {
+        padding: 20px;
+    }
+
+    .info {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .value {
+        text-align: left;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            <img src="IMI.jpg" alt="IMI Logo">
+        </div>
+
+        <h1>IMI DEVELOPER</h1>
+
+        <p>Official Certificate Verification Portal</p>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div class="status">
+
+        <div class="verified">
+            ✓ CERTIFICATE VERIFIED
+        </div>
+
+    </div>
+
+
+    <!-- INSTITUTION -->
+
+    <div class="institution">
+
+        Institut de Management et d'Informatique
+
+    </div>
+
+
+    <!-- CERTIFICATE INFORMATION -->
+
+    <div class="content">
+
+        <div class="info">
+
+            <span class="label">
+                Nom & Prénom
+            </span>
+
+            <span class="value">
+                MORAD EZZAKRAOUY
             </span>
 
         </div>
@@ -8,88 +248,18 @@
         <div class="info">
 
             <span class="label">
-                Établissement
+                Certificate ID
             </span>
 
             <span class="value">
-                Institut de Management et d'Informatique
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Date d'émission
-            </span>
-
-            <span class="value">
-                17 Septembre 2026
-            </span>
-
-        </div>
-
-
-        <div class="info">
-
-            <span class="label">
-                Statut
-            </span>
-
-            <span class="value">
-                Authentifié
-            </span>
-
-        </div>
-
-
-        <!-- REFERENCE -->
-
-        <div class="reference">
-
-            <span>
-                Verification Reference
-            </span>
-
-            <strong>
                 LPQHSE-26A911
-            </strong>
+            </span>
 
         </div>
 
 
-        <!-- VERIFY ANOTHER -->
+        <div class="info">
 
-        <a
-            href="index.html"
-            class="verify-again"
-        >
-            VERIFY ANOTHER CERTIFICATE
-        </a>
-
-
-        <div class="verification-note">
-
-            This certificate was verified through the
-            official certificate verification portal.
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        Certificate Verification Service<br>
-
-        © 2026 IMI Developer
-
-    </div>
-
-</div>
-
-</body>
-</html>
+            <span class="label">
+                Formation
+            </span>
