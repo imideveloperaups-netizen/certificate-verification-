@@ -26,7 +26,7 @@ body {
 .card {
     width: 100%;
     max-width: 650px;
-    background: white;
+    background: #ffffff;
     border-radius: 18px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.10);
     overflow: hidden;
@@ -83,8 +83,18 @@ body {
     border: 1px solid #a7f3d0;
 }
 
+.invalid {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: #fef2f2;
+    color: #b91c1c;
+    font-weight: bold;
+    border: 1px solid #fecaca;
+}
+
 .content {
-    padding: 25px 30px 25px;
+    padding: 25px 30px 35px;
 }
 
 .info {
@@ -106,65 +116,54 @@ body {
     text-align: right;
 }
 
-.institution {
-    text-align: center;
-    padding: 5px 20px 20px;
-    color: #374151;
-    font-size: 13px;
-}
-
-.reference {
-    margin-top: 20px;
-    padding: 14px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.reference span {
-    display: block;
-    color: #6b7280;
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.reference strong {
-    color: #111827;
-    font-size: 14px;
-}
-
-.verify-again {
-    display: block;
-    width: 100%;
-    margin-top: 18px;
-    padding: 13px;
-    background: #111827;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 9px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.verify-again:hover {
-    background: #1f2937;
-}
-
-.verification-note {
-    text-align: center;
-    margin-top: 15px;
-    color: #6b7280;
-    font-size: 11px;
-}
-
 .footer {
     text-align: center;
     padding: 18px;
     background: #f9fafb;
     color: #6b7280;
     font-size: 12px;
+}
+
+.verify-box {
+    text-align: center;
+    padding: 35px 30px;
+}
+
+.verify-box h2 {
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.verify-box p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #111827;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1f2937;
 }
 
 @media(max-width:500px) {
@@ -193,8 +192,6 @@ body {
 
 <div class="card">
 
-    <!-- HEADER -->
-
     <div class="header">
 
         <div class="logo">
@@ -203,63 +200,57 @@ body {
 
         <h1>IMI DEVELOPER</h1>
 
-        <p>Official Certificate Verification Portal</p>
+        <p>Official Certificate Authentication Portal</p>
 
     </div>
 
 
-    <!-- STATUS -->
+    <div id="status"></div>
 
-    <div class="status">
+    <div id="certificate"></div>
 
-        <div class="verified">
-            ✓ CERTIFICATE VERIFIED
-        </div>
 
+    <div class="footer">
+        This page allows verification of certificate authenticity.
     </div>
 
-
-    <!-- INSTITUTION -->
-
-    <div class="institution">
-
-        Institut de Management et d'Informatique
-
-    </div>
+</div>
 
 
-    <!-- CERTIFICATE INFORMATION -->
+<script>
 
-    <div class="content">
+/* =========================
+   CERTIFICATE DATABASE
+   ========================= */
 
-        <div class="info">
+const certificates = {
 
-            <span class="label">
-                Nom & Prénom
-            </span>
+    "LPQHSE-26A911": {
 
-            <span class="value">
-                MORAD EZZAKRAOUY
-            </span>
+        name: "MORAD EZZAKRAOUY",
 
-        </div>
+        formation: "Licence Professionnelle QHSE",
 
+        institution: "Institut de Management et d'Informatique",
 
-        <div class="info">
+        date: "17 Septembre 2026",
 
-            <span class="label">
-                Certificate ID
-            </span>
+        status: "Authentifié"
 
-            <span class="value">
-                LPQHSE-26A911
-            </span>
+    }
 
-        </div>
+};
 
 
-        <div class="info">
+/* =========================
+   READ CERTIFICATE ID
+   ========================= */
 
-            <span class="label">
-                Formation
-            </span>
+const params = new URLSearchParams(window.location.search);
+
+const certificateId = params.get("id");
+
+
+const statusBox = document.getElementById("status");
+
+const certificateBox = document.getElementById("certificate");
