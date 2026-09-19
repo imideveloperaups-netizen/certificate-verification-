@@ -242,7 +242,7 @@ body {
 
         <div class="info">
             <span class="label">Date d'émission</span>
-            <span class="value">7 Septembre 2026</span>
+            <span class="value">17 Septembre 2026</span>
         </div>
 
         <div class="info">
@@ -269,7 +269,9 @@ body {
                 <strong>LPQHSE-26A911</strong>
             </div>
 
-    
+            <div class="verification-reference">
+                Vérifié le:
+                <strong>7 September 2026 a 9:00</strong>
             </div>
 
         </div>
@@ -282,27 +284,6 @@ body {
     </div>
 
 </div>
-
-<script>
-function updateVerificationDate() {
-
-    const now = new Date();
-
-    const options = {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    };
-
-    document.getElementById("verificationDate").textContent =
-        now.toLocaleDateString("fr-FR", options);
-}
-
-updateVerificationDate();
-</script>
 
 </body>
 </html>
