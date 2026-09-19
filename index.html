@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Certificate Verification | IMI Developer</title>
+<title>Certificate Verification</title>
 
 <style>
 * {
@@ -26,7 +26,7 @@ body {
 .card {
     width: 100%;
     max-width: 650px;
-    background: #ffffff;
+    background: white;
     border-radius: 18px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.10);
     overflow: hidden;
@@ -83,16 +83,6 @@ body {
     border: 1px solid #a7f3d0;
 }
 
-.invalid {
-    display: inline-block;
-    padding: 10px 22px;
-    border-radius: 30px;
-    background: #fef2f2;
-    color: #b91c1c;
-    font-weight: bold;
-    border: 1px solid #fecaca;
-}
-
 .content {
     padding: 25px 30px 35px;
 }
@@ -124,50 +114,7 @@ body {
     font-size: 12px;
 }
 
-.verify-box {
-    text-align: center;
-    padding: 35px 30px;
-}
-
-.verify-box h2 {
-    color: #111827;
-    margin-bottom: 10px;
-}
-
-.verify-box p {
-    color: #6b7280;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 15px;
-    outline: none;
-}
-
-button {
-    width: 100%;
-    margin-top: 12px;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: #111827;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1f2937;
-}
-
 @media(max-width:500px) {
-
     .content {
         padding: 20px;
     }
@@ -179,10 +126,6 @@ button:hover {
 
     .value {
         text-align: left;
-    }
-
-    .header h1 {
-        font-size: 22px;
     }
 }
 </style>
@@ -204,53 +147,51 @@ button:hover {
 
     </div>
 
+    <div class="status">
+        <div class="verified">
+            ✓ CERTIFICATE VERIFIED
+        </div>
+    </div>
 
-    <div id="status"></div>
+    <div class="content">
 
-    <div id="certificate"></div>
+        <div class="info">
+            <span class="label">Nom & Prénom</span>
+            <span class="value">MORAD EZZAKRAOUY</span>
+        </div>
 
+        <div class="info">
+            <span class="label">Certificate ID</span>
+            <span class="value">LPQHSE-26A911</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Formation</span>
+            <span class="value">Licence Professionnelle QHSE</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Établissement</span>
+            <span class="value">Institut de Management et d'Informatique</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Date d'émission</span>
+            <span class="value">17 Septembre 2026</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Statut</span>
+            <span class="value">Authentifié</span>
+        </div>
+
+    </div>
 
     <div class="footer">
-        This page allows verification of certificate authenticity.
+        Cette page permet de vérifier l'authenticité du certificat.
     </div>
 
 </div>
 
-
-<script>
-
-/* =========================
-   CERTIFICATE DATABASE
-   ========================= */
-
-const certificates = {
-
-    "LPQHSE-26A911": {
-
-        name: "MORAD EZZAKRAOUY",
-
-        formation: "Licence Professionnelle QHSE",
-
-        institution: "Institut de Management et d'Informatique",
-
-        date: "17 Septembre 2026",
-
-        status: "Authentifié"
-
-    }
-
-};
-
-
-/* =========================
-   READ CERTIFICATE ID
-   ========================= */
-
-const params = new URLSearchParams(window.location.search);
-
-const certificateId = params.get("id");
-
-
-const statusBox = document.getElementById("status");
-
-const certificateBox = document.getElementById("certificate");
+</body>
+</html>
