@@ -1,81 +1,131 @@
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vérification des certificats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificate Verification</title>
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#f3f6fa;
-  color:#182b49;
+  background:#f4f6f9;
+  color:#172b4d;
 }
 header{
-  background:#102b50;
-  color:white;
-  padding:24px 16px;
+  background:#102746;
+  padding:22px;
   text-align:center;
+  color:white;
+  border-bottom:3px solid #c6a45b;
 }
 .logo{
-  width:58px;height:58px;
-  border:2px solid #d8b66b;
+  width:52px;height:52px;
+  border:2px solid #c6a45b;
   border-radius:50%;
   display:grid;place-items:center;
   margin:0 auto 12px;
-  font-size:27px;color:#e4c57b;
+  color:#e0c57e;font-size:25px;
 }
-header h1{font-size:22px;margin:8px 0}
-header p{font-size:13px;color:#d7e1ee;margin:0}
+header h1{font-size:22px;margin:0 0 8px}
+header p{font-size:12px;color:#cbd5e1;margin:0}
 main{
   width:calc(100% - 30px);
-  max-width:600px;
-  margin:35px auto;
+  max-width:760px;
+  margin:65px auto;
+  text-align:center;
 }
-.card{
+.tag{
+  font-size:11px;letter-spacing:2px;
+  color:#a17b31;font-weight:bold;
+}
+h2{font-size:30px;margin:15px 0 10px}
+.subtitle{
+  font-size:14px;color:#778398;
+  line-height:1.7;margin-bottom:30px;
+}
+.search{
+  display:flex;
+  padding:7px;
   background:white;
-  padding:28px;
-  border:1px solid #e0e6ef;
-  border-radius:10px;
-  box-shadow:0 8px 28px #17365d0d;
+  border:1px solid #d9e0e9;
+  border-radius:8px;
+  box-shadow:0 8px 30px #172b4d0c;
 }
-h2{font-size:21px;margin:0 0 10px}
-.description{color:#69788c;font-size:14px;line-height:1.6}
-label{
-  display:block;font-size:14px;
-  font-weight:bold;margin:22px 0 8px;
+.search input{
+  flex:1;min-width:0;
+  border:0;outline:0;
+  padding:13px 12px;
+  font-size:14px;
+  background:transparent;
 }
-input{
-  width:100%;padding:13px;
-  border:1px solid #cbd5e1;
-  border-radius:6px;font-size:15px;
-  outline:none;
+.search button{
+  background:#163c69;
+  color:white;border:0;
+  border-radius:5px;
+  padding:0 22px;
+  font-weight:bold;cursor:pointer;
 }
-input:focus{border-color:#235ba5}
-button{
-  width:100%;padding:14px;
-  margin-top:24px;background:#173e70;
-  color:white;border:0;border-radius:6px;
-  font-size:15px;font-weight:bold;cursor:pointer;
-}
-button:hover{background:#24548d}
+.search button:hover{background:#245487}
 #result{
-  display:none;margin-top:22px;
-  padding:18px;border-radius:7px;
-  line-height:1.7;font-size:14px;
-  overflow-wrap:anywhere;
+  display:none;
+  margin-top:28px;
+  background:white;
+  padding:24px;
+  border:1px solid #dce3ec;
+  border-radius:8px;
+  text-align:left;
+  box-shadow:0 8px 25px #172b4d08;
 }
-.success{background:#edf9f1;border:1px solid #a7dfb8;color:#176337}
-.error{background:#fff0f0;border:1px solid #f0b7b7;color:#9b2525}
-.notice{
-  margin-top:20px;font-size:12px;
-  line-height:1.6;color:#68788d;
+#result h3{margin:0 0 18px;font-size:18px}
+.status{
+  display:inline-block;
+  color:#17663a;background:#e8f7ed;
+  padding:7px 11px;border-radius:4px;
+  font-size:12px;font-weight:bold;
+  margin-bottom:16px;
+}
+.details{
+  font-size:14px;line-height:2;
+  color:#59697d;margin-bottom:18px;
+}
+.preview{
+  display:block;width:100%;
+  height:auto;max-height:700px;
+  object-fit:contain;
+  border:1px solid #e0e5eb;
+  background:#fafafa;
+}
+.placeholder{
+  min-height:200px;
+  border:1px dashed #b8c5d5;
+  display:flex;align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  color:#748399;
+  line-height:1.8;font-size:14px;
+}
+.error{
+  display:none;
+  margin-top:20px;
+  padding:15px;
+  background:#fff0f0;
+  border:1px solid #f1c4c4;
+  color:#942d2d;border-radius:6px;
+  font-size:14px;
 }
 footer{
-  text-align:center;padding:20px;
-  font-size:12px;color:#718096;
+  text-align:center;padding:25px 15px;
+  color:#8190a2;font-size:12px;
+}
+@media(max-width:480px){
+  main{margin:42px auto}
+  h2{font-size:25px}
+  .search button{padding:0 13px}
+  .search input{font-size:12px}
+  #result{padding:17px}
 }
 </style>
 </head>
@@ -83,109 +133,103 @@ footer{
 
 <header>
   <div class="logo">✓</div>
-  <h1>Vérification des certificats</h1>
-  <p>Service de vérification et d'authenticité des documents</p>
+  <h1>Certificate Verification</h1>
+  <p>OFFICIAL CERTIFICATE LOOKUP PORTAL</p>
 </header>
 
 <main>
-  <section class="card">
-    <h2>Vérifier un certificat</h2>
-    <p class="description">
-      Saisissez les informations figurant sur votre certificat
-      afin de vérifier sa correspondance avec les données enregistrées.
-    </p>
+  <div class="tag">VERIFICATION SERVICE</div>
+  <h2>Verify Your Certificate</h2>
+  <p class="subtitle">
+    Enter your certificate serial number to find
+    the corresponding certificate record.
+  </p>
 
-    <form id="verifyForm">
-      <label for="nom">Nom et prénom</label>
-      <input id="nom" type="text"
-        placeholder="Entrez votre nom et prénom"
-        autocomplete="name" required>
+  <form class="search" id="searchForm">
+    <input
+      id="serial"
+      type="search"
+      placeholder="Search for certificate verification"
+      aria-label="Certificate serial number"
+      autocomplete="off"
+      required
+    >
+    <button type="submit">Search</button>
+  </form>
 
-      <label for="serie">Numéro de série</label>
-      <input id="serie" type="text"
-        placeholder="Ex. CERT-2026-0001"
-        required>
+  <div id="error" class="error" role="status">
+    No matching certificate was found. Please check the serial number.
+  </div>
 
-      <button type="submit">Vérifier le certificat</button>
-    </form>
+  <section id="result" aria-live="polite">
+    <span class="status">RECORD FOUND</span>
+    <h3>Certificate Details</h3>
 
-    <div id="result" role="status" aria-live="polite"></div>
+    <div class="details">
+      <strong>Serial Number:</strong> LPQHSE-25A11<br>
+      <strong>Document:</strong> Certificate
+    </div>
 
-    <p class="notice">
-      La vérification dépend des données disponibles dans le registre
-      officiel de l'organisme émetteur. En cas de difficulté,
-      veuillez contacter l'organisme concerné.
-    </p>
+    <!-- Add your certificate image as certificate.jpg -->
+    <img
+      id="certificateImage"
+      class="preview"
+      src="certificate.jpg"
+      alt="Certificate document"
+      hidden
+    >
+
+    <div id="imagePlaceholder" class="placeholder">
+      Certificate image will appear here once you upload it.<br>
+      Add your image as <strong>certificate.jpg</strong>
+      to the same GitHub folder as index.html.
+    </div>
   </section>
 </main>
 
 <footer>
-  © <span id="year"></span> — Service de vérification des certificats
+  Certificate Verification Portal
 </footer>
 
 <script>
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+const validSerial = "LPQHSE-25A11";
 
-/*
-  EXEMPLE DE TEST UNIQUEMENT.
-  Remplacez ces données par votre registre réel et sécurisé.
-*/
-const certificats = [
-  {
-    nom: "Ahmed Alaoui",
-    serie: "CERT-2026-0001",
-    formation: "QHSE",
-    date: "17/10/2026"
+const form = document.getElementById("searchForm");
+const input = document.getElementById("serial");
+const result = document.getElementById("result");
+const error = document.getElementById("error");
+const img = document.getElementById("certificateImage");
+const placeholder = document.getElementById("imagePlaceholder");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const value = input.value.trim().toUpperCase();
+
+  result.style.display = "none";
+  error.style.display = "none";
+
+  if (value !== validSerial) {
+    error.style.display = "block";
+    return;
   }
-];
 
-document.getElementById("verifyForm")
-.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const nom = document.getElementById("nom")
-    .value.trim().replace(/\s+/g, " ").toLocaleLowerCase("fr");
-
-  const serie = document.getElementById("serie")
-    .value.trim().toUpperCase();
-
-  const result = document.getElementById("result");
   result.style.display = "block";
 
-  const certificat = certificats.find(c =>
-    c.serie.toUpperCase() === serie &&
-    c.nom.trim().replace(/\s+/g, " ")
-      .toLocaleLowerCase("fr") === nom
-  );
+  // Show the certificate image when the file exists.
+  img.onload = function() {
+    img.hidden = false;
+    placeholder.style.display = "none";
+  };
 
-  if (certificat) {
-    result.className = "success";
-    result.innerHTML = `
-      <strong>✓ Correspondance trouvée</strong><br><br>
-      Nom et prénom : ${escapeHTML(certificat.nom)}<br>
-      Numéro de série : ${escapeHTML(certificat.serie)}<br>
-      Formation : ${escapeHTML(certificat.formation)}<br>
-      Date : ${escapeHTML(certificat.date)}<br><br>
-      <strong>Les informations correspondent à l'enregistrement
-      de démonstration.</strong>
-    `;
-  } else {
-    result.className = "error";
-    result.textContent =
-      "Aucune correspondance trouvée. Vérifiez le nom et le numéro de série, puis contactez l'organisme émetteur si nécessaire.";
-  }
+  img.onerror = function() {
+    img.hidden = true;
+    placeholder.style.display = "flex";
+  };
+
+  // Recheck the image file.
+  img.src = "certificate.jpg";
 });
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
-}
 </script>
 
 </body>
