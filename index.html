@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,126 +6,29 @@
 <title>Certificate Verification</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f6f9;
-  color:#172b4d;
-}
-header{
-  background:#102746;
-  padding:22px;
-  text-align:center;
-  color:white;
-  border-bottom:3px solid #c6a45b;
-}
-.logo{
-  width:52px;height:52px;
-  border:2px solid #c6a45b;
-  border-radius:50%;
-  display:grid;place-items:center;
-  margin:0 auto 12px;
-  color:#e0c57e;font-size:25px;
-}
-header h1{font-size:22px;margin:0 0 8px}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#172b4d}
+header{background:#102746;padding:22px;text-align:center;color:#fff;border-bottom:3px solid #c6a45b}
+.logo{width:52px;height:52px;border:2px solid #c6a45b;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;color:#e0c57e;font-size:25px}
+header h1{font-size:22px;margin:0 0 6px}
 header p{font-size:12px;color:#cbd5e1;margin:0}
-main{
-  width:calc(100% - 30px);
-  max-width:760px;
-  margin:65px auto;
-  text-align:center;
-}
-.tag{
-  font-size:11px;letter-spacing:2px;
-  color:#a17b31;font-weight:bold;
-}
+main{width:calc(100% - 30px);max-width:760px;margin:55px auto;text-align:center}
+.tag{font-size:11px;letter-spacing:2px;color:#a17b31;font-weight:bold}
 h2{font-size:30px;margin:15px 0 10px}
-.subtitle{
-  font-size:14px;color:#778398;
-  line-height:1.7;margin-bottom:30px;
-}
-.search{
-  display:flex;
-  padding:7px;
-  background:white;
-  border:1px solid #d9e0e9;
-  border-radius:8px;
-  box-shadow:0 8px 30px #172b4d0c;
-}
-.search input{
-  flex:1;min-width:0;
-  border:0;outline:0;
-  padding:13px 12px;
-  font-size:14px;
-  background:transparent;
-}
-.search button{
-  background:#163c69;
-  color:white;border:0;
-  border-radius:5px;
-  padding:0 22px;
-  font-weight:bold;cursor:pointer;
-}
+.subtitle{font-size:14px;color:#778398;line-height:1.7;margin-bottom:28px}
+.search{display:flex;padding:7px;background:#fff;border:1px solid #d9e0e9;border-radius:8px;box-shadow:0 8px 30px #172b4d0c}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:13px 12px;font-size:14px;background:transparent}
+.search button{background:#163c69;color:#fff;border:0;border-radius:5px;padding:0 22px;font-weight:bold;cursor:pointer}
 .search button:hover{background:#245487}
-#result{
-  display:none;
-  margin-top:28px;
-  background:white;
-  padding:24px;
-  border:1px solid #dce3ec;
-  border-radius:8px;
-  text-align:left;
-  box-shadow:0 8px 25px #172b4d08;
-}
-#result h3{margin:0 0 18px;font-size:18px}
-.status{
-  display:inline-block;
-  color:#17663a;background:#e8f7ed;
-  padding:7px 11px;border-radius:4px;
-  font-size:12px;font-weight:bold;
-  margin-bottom:16px;
-}
-.details{
-  font-size:14px;line-height:2;
-  color:#59697d;margin-bottom:18px;
-}
-.preview{
-  display:block;width:100%;
-  height:auto;max-height:700px;
-  object-fit:contain;
-  border:1px solid #e0e5eb;
-  background:#fafafa;
-}
-.placeholder{
-  min-height:200px;
-  border:1px dashed #b8c5d5;
-  display:flex;align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:25px;
-  color:#748399;
-  line-height:1.8;font-size:14px;
-}
-.error{
-  display:none;
-  margin-top:20px;
-  padding:15px;
-  background:#fff0f0;
-  border:1px solid #f1c4c4;
-  color:#942d2d;border-radius:6px;
-  font-size:14px;
-}
-footer{
-  text-align:center;padding:25px 15px;
-  color:#8190a2;font-size:12px;
-}
-@media(max-width:480px){
-  main{margin:42px auto}
-  h2{font-size:25px}
-  .search button{padding:0 13px}
-  .search input{font-size:12px}
-  #result{padding:17px}
-}
+.error{display:none;margin-top:20px;padding:15px;background:#fff0f0;border:1px solid #f1c4c4;color:#942d2d;border-radius:6px;font-size:14px}
+#result{display:none;margin-top:28px;background:#fff;padding:24px;border:1px solid #dce3ec;border-radius:8px;text-align:left;box-shadow:0 8px 25px #172b4d08}
+#result h3{margin:0 0 16px;font-size:18px}
+.status{display:inline-block;color:#17663a;background:#e8f7ed;padding:7px 11px;border-radius:4px;font-size:12px;font-weight:bold;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:18px}
+td{padding:10px 4px;border-bottom:1px solid #edf0f4;color:#59697d}
+td:first-child{width:40%;font-weight:bold;color:#172b4d}
+.preview{display:block;width:100%;height:auto;max-height:700px;object-fit:contain;border:1px solid #e0e5eb;background:#fafafa}
+footer{text-align:center;padding:25px 15px;color:#8190a2;font-size:12px}
+@media(max-width:480px){main{margin:40px auto}h2{font-size:25px}.search button{padding:0 13px}#result{padding:17px}}
 </style>
 </head>
 <body>
@@ -134,26 +36,17 @@ footer{
 <header>
   <div class="logo">✓</div>
   <h1>Certificate Verification</h1>
-  <p>OFFICIAL CERTIFICATE LOOKUP PORTAL</p>
+  <p>CERTIFICATE LOOKUP PORTAL</p>
 </header>
 
 <main>
   <div class="tag">VERIFICATION SERVICE</div>
-  <h2>Verify Your Certificate</h2>
-  <p class="subtitle">
-    Enter your certificate serial number to find
-    the corresponding certificate record.
-  </p>
+  <h2>Verify a Certificate</h2>
+  <p class="subtitle">Enter the certificate serial number to view its record.</p>
 
   <form class="search" id="searchForm">
-    <input
-      id="serial"
-      type="search"
-      placeholder="Search for certificate verification"
-      aria-label="Certificate serial number"
-      autocomplete="off"
-      required
-    >
+    <input id="serial" type="search" placeholder="Enter serial number (e.g. LPQHSE-25A911)"
+           aria-label="Certificate serial number" autocomplete="off" required>
     <button type="submit">Search</button>
   </form>
 
@@ -164,71 +57,67 @@ footer{
   <section id="result" aria-live="polite">
     <span class="status">RECORD FOUND</span>
     <h3>Certificate Details</h3>
-
-    <div class="details">
-      <strong>Serial Number:</strong> LPQHSE-25A911<br>
-      <strong>Document:</strong> Certificate
-    </div>
-
-    <!-- Add your certificate image as certificate.jpg -->
-    <img
-      id="certificateImage"
-      class="preview"
-      src="IMI.jpg"
-      alt="Certificate document"
-      hidden
-    >
-
-    <div id="imagePlaceholder" class="placeholder">
-      Certificate image will appear here once you upload it.<br>
-      Add your image as <strong>certificate.jpg</strong>
-      to the same GitHub folder as index.html.
-    </div>
+    <table id="details"></table>
+    <img id="certificateImage" class="preview" alt="Certificate document" hidden>
   </section>
 </main>
 
-<footer>
-  Certificate Verification Portal
-</footer>
+<footer>Certificate Verification Portal</footer>
 
 <script>
-const validSerial = "LPQHSE-25A911";
+// Zid certificates jdad hna (wahed object l kol certificate)
+const certificates = [
+  {
+    serial: "LPQHSE-25A911",
+    document: "Certificate",
+    image: "IMI.jpg"
+    // Tqdar tzid: holder: "...", issuedOn: "...", issuedBy: "..."
+  }
+];
+
+const labels = {
+  serial: "Serial Number",
+  document: "Document",
+  holder: "Holder",
+  issuedBy: "Issued By",
+  issuedOn: "Issue Date"
+};
 
 const form = document.getElementById("searchForm");
 const input = document.getElementById("serial");
 const result = document.getElementById("result");
 const error = document.getElementById("error");
 const img = document.getElementById("certificateImage");
-const placeholder = document.getElementById("imagePlaceholder");
+const details = document.getElementById("details");
 
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const value = input.value.trim().toUpperCase();
-
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
   result.style.display = "none";
   error.style.display = "none";
 
-  if (value !== validSerial) {
-    error.style.display = "block";
-    return;
+  const value = input.value.trim().toUpperCase();
+  const cert = certificates.find(c => c.serial.toUpperCase() === value);
+
+  if (!cert) { error.style.display = "block"; return; }
+
+  details.innerHTML = "";
+  Object.keys(labels).forEach(function (key) {
+    if (!cert[key]) return;
+    const tr = document.createElement("tr");
+    const a = document.createElement("td");
+    const b = document.createElement("td");
+    a.textContent = labels[key];
+    b.textContent = cert[key];
+    tr.append(a, b);
+    details.appendChild(tr);
+  });
+
+  img.hidden = true;
+  if (cert.image) {
+    img.onload = function () { img.hidden = false; };
+    img.src = cert.image;
   }
-
   result.style.display = "block";
-
-  // Show the certificate image when the file exists.
-  img.onload = function() {
-    img.hidden = false;
-    placeholder.style.display = "none";
-  };
-
-  img.onerror = function() {
-    img.hidden = true;
-    placeholder.style.display = "flex";
-  };
-
-  // Recheck the image file.
-  img.src = "IMI.jpg";
 });
 </script>
 
