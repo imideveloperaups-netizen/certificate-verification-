@@ -1,289 +1,192 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Certificate Verification</title>
-
+<title>Vérification des certificats</title>
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f6fa;
+  color:#182b49;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+header{
+  background:#102b50;
+  color:white;
+  padding:24px 16px;
+  text-align:center;
 }
-
-.card {
-    width: 100%;
-    max-width: 650px;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.10);
-    overflow: hidden;
+.logo{
+  width:58px;height:58px;
+  border:2px solid #d8b66b;
+  border-radius:50%;
+  display:grid;place-items:center;
+  margin:0 auto 12px;
+  font-size:27px;color:#e4c57b;
 }
-
-.header {
-    background: #111827;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
+header h1{font-size:22px;margin:8px 0}
+header p{font-size:13px;color:#d7e1ee;margin:0}
+main{
+  width:calc(100% - 30px);
+  max-width:600px;
+  margin:35px auto;
 }
-
-.logo {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    background: white;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+.card{
+  background:white;
+  padding:28px;
+  border:1px solid #e0e6ef;
+  border-radius:10px;
+  box-shadow:0 8px 28px #17365d0d;
 }
-
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+h2{font-size:21px;margin:0 0 10px}
+.description{color:#69788c;font-size:14px;line-height:1.6}
+label{
+  display:block;font-size:14px;
+  font-weight:bold;margin:22px 0 8px;
 }
-
-.header h1 {
-    font-size: 25px;
-    letter-spacing: 1px;
+input{
+  width:100%;padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:6px;font-size:15px;
+  outline:none;
 }
-
-.header p {
-    margin-top: 8px;
-    color: #d1d5db;
-    font-size: 14px;
+input:focus{border-color:#235ba5}
+button{
+  width:100%;padding:14px;
+  margin-top:24px;background:#173e70;
+  color:white;border:0;border-radius:6px;
+  font-size:15px;font-weight:bold;cursor:pointer;
 }
-
-.status {
-    text-align: center;
-    padding: 25px 20px 10px;
+button:hover{background:#24548d}
+#result{
+  display:none;margin-top:22px;
+  padding:18px;border-radius:7px;
+  line-height:1.7;font-size:14px;
+  overflow-wrap:anywhere;
 }
-
-.verified {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    border-radius: 30px;
-    background: #ecfdf5;
-    color: #047857;
-    font-weight: bold;
-    border: 1px solid #a7f3d0;
+.success{background:#edf9f1;border:1px solid #a7dfb8;color:#176337}
+.error{background:#fff0f0;border:1px solid #f0b7b7;color:#9b2525}
+.notice{
+  margin-top:20px;font-size:12px;
+  line-height:1.6;color:#68788d;
 }
-
-.check {
-    font-size: 17px;
-}
-
-.content {
-    padding: 25px 30px 20px;
-}
-
-.section-title {
-    font-size: 13px;
-    font-weight: bold;
-    color: #374151;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin: 5px 0 8px;
-}
-
-.info {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.label {
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.value {
-    font-weight: 600;
-    color: #111827;
-    text-align: right;
-}
-
-.certificate-id {
-    color: #1d4ed8;
-    font-family: monospace;
-    letter-spacing: 0.5px;
-}
-
-.verification-box {
-    margin-top: 22px;
-    padding: 18px;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-}
-
-.verification-box-title {
-    font-weight: bold;
-    color: #111827;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.verification-box p {
-    color: #6b7280;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-.verification-reference {
-    margin-top: 12px;
-    font-family: monospace;
-    font-size: 12px;
-    color: #374151;
-}
-
-.footer {
-    text-align: center;
-    padding: 18px;
-    background: #f9fafb;
-    color: #6b7280;
-    font-size: 12px;
-}
-
-.footer strong {
-    color: #374151;
-}
-
-@media(max-width:500px) {
-    .content {
-        padding: 20px;
-    }
-
-    .info {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .value {
-        text-align: left;
-    }
+footer{
+  text-align:center;padding:20px;
+  font-size:12px;color:#718096;
 }
 </style>
 </head>
-
 <body>
 
-<div class="card">
+<header>
+  <div class="logo">✓</div>
+  <h1>Vérification des certificats</h1>
+  <p>Service de vérification et d'authenticité des documents</p>
+</header>
 
-    <div class="header">
+<main>
+  <section class="card">
+    <h2>Vérifier un certificat</h2>
+    <p class="description">
+      Saisissez les informations figurant sur votre certificat
+      afin de vérifier sa correspondance avec les données enregistrées.
+    </p>
 
-        <div class="logo">
-            <img src="IMI.jpg" alt="IMI Logo">
-        </div>
+    <form id="verifyForm">
+      <label for="nom">Nom et prénom</label>
+      <input id="nom" type="text"
+        placeholder="Entrez votre nom et prénom"
+        autocomplete="name" required>
 
-        <h1>IMI DEVELOPER</h1>
+      <label for="serie">Numéro de série</label>
+      <input id="serie" type="text"
+        placeholder="Ex. CERT-2026-0001"
+        required>
 
-        <p>Official Certificate Authentication Portal</p>
+      <button type="submit">Vérifier le certificat</button>
+    </form>
 
-    </div>
+    <div id="result" role="status" aria-live="polite"></div>
 
-    <div class="status">
-        <div class="verified">
-            <span class="check">✓</span>
-            CERTIFICATE VERIFIED
-        </div>
-    </div>
+    <p class="notice">
+      La vérification dépend des données disponibles dans le registre
+      officiel de l'organisme émetteur. En cas de difficulté,
+      veuillez contacter l'organisme concerné.
+    </p>
+  </section>
+</main>
 
-    <div class="content">
+<footer>
+  © <span id="year"></span> — Service de vérification des certificats
+</footer>
 
-        <div class="section-title">
-            Certificate Information
-        </div>
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 
-        <div class="info">
-            <span class="label">Nom & Prénom</span>
-            <span class="value">MORAD EZZAKRAOUY</span>
-        </div>
+/*
+  EXEMPLE DE TEST UNIQUEMENT.
+  Remplacez ces données par votre registre réel et sécurisé.
+*/
+const certificats = [
+  {
+    nom: "Ahmed Alaoui",
+    serie: "CERT-2026-0001",
+    formation: "QHSE",
+    date: "17/10/2026"
+  }
+];
 
-        <div class="info">
-            <span class="label">Certificate ID</span>
-            <span class="value certificate-id">LPQHSE-25A911</span>
-        </div>
+document.getElementById("verifyForm")
+.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-        <div class="info">
-            <span class="label">CIN</span>
-            <span class="value">T293136</span>
-        </div>
+  const nom = document.getElementById("nom")
+    .value.trim().replace(/\s+/g, " ").toLocaleLowerCase("fr");
 
-        <div class="info">
-            <span class="label">Formation</span>
-            <span class="value">Licence Professionnelle QHSE</span>
-        </div>
+  const serie = document.getElementById("serie")
+    .value.trim().toUpperCase();
 
-        <div class="info">
-            <span class="label">Établissement</span>
-            <span class="value">
-                Institut de Management et d'Informatique
-            </span>
-        </div>
+  const result = document.getElementById("result");
+  result.style.display = "block";
 
-        <div class="info">
-            <span class="label">Date d'émission</span>
-            <span class="value">7 Septembre 2026</span>
-        </div>
+  const certificat = certificats.find(c =>
+    c.serie.toUpperCase() === serie &&
+    c.nom.trim().replace(/\s+/g, " ")
+      .toLocaleLowerCase("fr") === nom
+  );
 
-        <div class="info">
-            <span class="label">Statut</span>
-            <span class="value">Authentifié</span>
-        </div>
+  if (certificat) {
+    result.className = "success";
+    result.innerHTML = `
+      <strong>✓ Correspondance trouvée</strong><br><br>
+      Nom et prénom : ${escapeHTML(certificat.nom)}<br>
+      Numéro de série : ${escapeHTML(certificat.serie)}<br>
+      Formation : ${escapeHTML(certificat.formation)}<br>
+      Date : ${escapeHTML(certificat.date)}<br><br>
+      <strong>Les informations correspondent à l'enregistrement
+      de démonstration.</strong>
+    `;
+  } else {
+    result.className = "error";
+    result.textContent =
+      "Aucune correspondance trouvée. Vérifiez le nom et le numéro de série, puis contactez l'organisme émetteur si nécessaire.";
+  }
+});
 
-        <div class="verification-box">
-
-            <div class="verification-box-title">
-                ✓ Electronic Verification
-            </div>
-
-            <p>
-                Ce certificat a été vérifié électroniquement
-                à partir de son identifiant unique.
-                Les informations affichées correspondent
-                aux données enregistrées dans le système
-                de vérification.
-            </p>
-
-            <div class="verification-reference">
-                Verification Reference:
-                <strong>LPQHSE-25A911</strong>
-            </div>
-
-            <div class="verification-reference">
-                Vérifié le:
-                <strong>7 September 2026 a 9:00</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="footer">
-        <strong>IMI DEVELOPER</strong><br>
-        Cette page permet de vérifier l'authenticité du certificat.
-    </div>
-
-</div>
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+</script>
 
 </body>
 </html>
