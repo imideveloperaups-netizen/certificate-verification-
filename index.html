@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +18,7 @@
   --background: #f4f6f9;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -58,14 +56,12 @@ header {
   color: #e2c783;
   background: rgba(255,255,255,.04);
   font-size: 29px;
-  font-weight: 400;
 }
 
 .header-text h1 {
   margin: 0 0 7px;
   font-size: 21px;
   font-weight: 600;
-  letter-spacing: .2px;
 }
 
 .header-text p {
@@ -76,15 +72,10 @@ header {
   line-height: 1.7;
 }
 
-.header-line {
-  height: 1px;
-  background: rgba(255,255,255,.10);
-}
-
 main {
   width: calc(100% - 32px);
   max-width: 760px;
-  margin: 64px auto 70px;
+  margin: 55px auto 65px;
   flex: 1;
 }
 
@@ -116,7 +107,6 @@ h2 {
   margin: 17px 0 12px;
   font-size: clamp(26px, 4vw, 34px);
   line-height: 1.25;
-  letter-spacing: -.6px;
   color: var(--navy);
 }
 
@@ -142,7 +132,6 @@ h2 {
   font-size: 12px;
   font-weight: 700;
   color: #35475e;
-  letter-spacing: .3px;
 }
 
 .search {
@@ -152,7 +141,6 @@ h2 {
   border: 1px solid #d5deea;
   border-radius: 7px;
   background: #fff;
-  transition: border-color .2s, box-shadow .2s;
 }
 
 .search:focus-within {
@@ -172,11 +160,8 @@ h2 {
   background: transparent;
 }
 
-.search input::placeholder {
-  color: #9aa6b5;
-}
-
-.search button {
+.search button,
+.primary-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -190,16 +175,11 @@ h2 {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background .2s;
 }
 
-.search button:hover {
+.search button:hover,
+.primary-button:hover {
   background: var(--navy-light);
-}
-
-.search button:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
 }
 
 .search-hint {
@@ -232,9 +212,34 @@ h2 {
   margin-bottom: 3px;
 }
 
-#result {
-  display: none;
-  margin-top: 24px;
+/* Separate search and results views */
+.view { display: none; }
+.view.active { display: block; }
+
+.results-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  border: 1px solid #d5deea;
+  background: #fff;
+  color: var(--navy);
+  padding: 11px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.back-button:hover {
+  background: #edf2f8;
+}
+
+.result-card {
   overflow: hidden;
   background: white;
   border: 1px solid var(--border);
@@ -262,20 +267,12 @@ h2 {
   align-items: center;
   gap: 8px;
   padding: 7px 11px;
-  background: #eaf5ee;
-  color: #24643c;
-  border: 1px solid #d1e9d9;
+  background: #fff4df;
+  color: #79551a;
+  border: 1px solid #ead6a8;
   border-radius: 5px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: .4px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #318452;
 }
 
 .result-header h3 {
@@ -352,9 +349,9 @@ h2 {
 }
 
 .placeholder {
-  display: none;
   min-height: 190px;
   padding: 25px;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -366,8 +363,69 @@ h2 {
   line-height: 1.9;
 }
 
-.placeholder strong {
-  color: #475c75;
+.placeholder strong { color: #475c75; }
+
+.disclaimer {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border: 1px solid #e1e7ef;
+  background: #f7f9fc;
+  color: #68788d;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* Demonstration advertisements */
+.ad-section {
+  margin-top: 28px;
+}
+
+.ad-label {
+  margin-bottom: 10px;
+  color: #8995a5;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.ad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ad-card {
+  min-width: 0;
+  min-height: 100px;
+  padding: 18px;
+  border: 1px solid #e1e7ef;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.ad-card small {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #8995a5;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ad-card strong {
+  display: block;
+  color: #35475e;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.ad-card p {
+  margin: 0;
+  color: #8793a3;
+  font-size: 11px;
+  line-height: 1.7;
 }
 
 footer {
@@ -398,31 +456,20 @@ footer .footer-title {
     font-size: 24px;
   }
 
-  .header-text h1 {
-    font-size: 17px;
-  }
+  .header-text h1 { font-size: 17px; }
 
   .header-text p {
     font-size: 9px;
     letter-spacing: 1px;
   }
 
-  main {
-    margin: 42px auto 48px;
-  }
+  main { margin: 38px auto 45px; }
 
-  .intro {
-    margin-bottom: 25px;
-  }
+  .intro { margin-bottom: 25px; }
 
-  .search-card {
-    padding: 18px;
-  }
+  .search-card { padding: 18px; }
 
-  .search {
-    gap: 4px;
-    padding: 4px;
-  }
+  .search { gap: 4px; padding: 4px; }
 
   .search input {
     padding: 11px 7px;
@@ -431,30 +478,29 @@ footer .footer-title {
 
   .search button {
     min-height: 42px;
-    padding: 0 13px;
+    padding: 0 12px;
     font-size: 12px;
   }
 
-  .details {
-    grid-template-columns: 1fr;
-  }
+  .details { grid-template-columns: 1fr; }
 
   .result-header,
-  .result-body {
-    padding: 19px;
+  .result-body { padding: 19px; }
+
+  .result-header h3 { font-size: 18px; }
+
+  .results-top { align-items: flex-start; }
+
+  .back-button {
+    padding: 10px;
+    font-size: 11px;
   }
 
-  .result-header h3 {
-    font-size: 18px;
-  }
+  .ad-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-  }
+  *, *::before, *::after { transition: none !important; }
 }
 </style>
 </head>
@@ -472,162 +518,236 @@ footer .footer-title {
 </header>
 
 <main>
-  <section class="intro">
-    <div class="eyebrow">Verification Service</div>
-    <h2>Verify Your Certificate</h2>
-    <p class="subtitle">
-      Enter the certificate serial number below to search
-      for the corresponding certificate record.
-    </p>
+
+  <!-- SEARCH PAGE -->
+  <section id="searchView" class="view active">
+    <section class="intro">
+      <div class="eyebrow">Verification Service</div>
+      <h2>Verify Your Certificate</h2>
+      <p class="subtitle">
+        Enter the certificate serial number below to search
+        for the corresponding certificate record.
+      </p>
+    </section>
+
+    <section class="search-card" aria-label="Certificate search">
+      <label class="field-label" for="serial">
+        Certificate Serial Number
+      </label>
+
+      <form class="search" id="searchForm">
+        <input
+          id="serial"
+          type="search"
+          placeholder="Search for certificate verification"
+          aria-label="Certificate serial number"
+          autocomplete="off"
+          autocapitalize="characters"
+          required
+        >
+
+        <button type="submit">
+          <svg width="17" height="17" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+          Search
+        </button>
+      </form>
+
+      <p class="search-hint">
+        <span>Note:</span>
+        Enter the serial number exactly as printed on your certificate.
+      </p>
+    </section>
+
+    <div id="error" class="error" role="alert" aria-live="polite">
+      <strong>No matching record found</strong>
+      Please check the certificate serial number and try again.
+    </div>
   </section>
 
-  <section class="search-card" aria-label="Certificate search">
-    <label class="field-label" for="serial">
-      Certificate Serial Number
-    </label>
+  <!-- RESULTS PAGE -->
+  <section id="resultsView" class="view">
+    <div class="results-top">
+      <div>
+        <div class="result-kicker">Certificate Lookup</div>
+        <div style="font-size:13px;color:#718096">
+          Search results
+        </div>
+      </div>
 
-    <form class="search" id="searchForm">
-      <input
-        id="serial"
-        type="search"
-        placeholder="Search for certificate verification"
-        aria-label="Certificate serial number"
-        autocomplete="off"
-        autocapitalize="characters"
-        required
-      >
-
-      <button type="submit">
-        <svg width="17" height="17" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round"
-             aria-hidden="true">
-          <circle cx="11" cy="11" r="7"></circle>
-          <path d="m20 20-4-4"></path>
-        </svg>
-        Search
+      <button type="button" class="back-button" id="backButton">
+        ← Back to Search
       </button>
-    </form>
-
-    <p class="search-hint">
-      <span>Note:</span>
-      Enter the serial number exactly as printed on your certificate.
-    </p>
-  </section>
-
-  <div id="error" class="error" role="alert" aria-live="polite">
-    <strong>No matching record found</strong>
-    Please check the certificate serial number and try again.
-  </div>
-
-  <section id="result" aria-live="polite">
-    <div class="result-header">
-      <div class="result-kicker">Search Result</div>
-
-      <div class="status">
-        <span class="status-dot"></span>
-        RECORD FOUND
-      </div>
-
-      <h3>Certificate Details</h3>
     </div>
 
-    <div class="result-body">
-      <div class="details">
-        <div class="detail-item">
-          <span class="detail-label">Serial Number</span>
-          <span class="detail-value">LPQHSE-25A911</span>
+    <section class="result-card">
+      <div class="result-header">
+        <div class="result-kicker">Search Result</div>
+
+        <div class="status">
+          DEMONSTRATION RECORD
         </div>
 
-        <div class="detail-item">
-          <span class="detail-label">Document Type</span>
-          <span class="detail-value">Certificate</span>
+        <h3>Certificate Details</h3>
+      </div>
+
+      <div class="result-body">
+        <div class="details">
+          <div class="detail-item">
+            <span class="detail-label">Serial Number</span>
+            <span class="detail-value" id="resultSerial">
+              LPQHSE-25A11
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Document Type</span>
+            <span class="detail-value">Certificate</span>
+          </div>
+        </div>
+
+        <div class="document-heading">
+          Certificate Document
+          <span>Document Preview</span>
+        </div>
+
+        <!-- Add your certificate image as IMI.jpg -->
+        <img
+          id="certificateImage"
+          class="preview"
+          src="IMI.jpg"
+          alt="Certificate image"
+          hidden
+        >
+
+        <div id="imagePlaceholder" class="placeholder">
+          <div>
+            <strong>Certificate image placeholder</strong><br>
+            Add your image file named <strong>IMI.jpg</strong>
+            to the same GitHub folder as index.html.<br>
+            The image will appear here automatically.
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          Demonstration interface. This page does not independently
+          authenticate a certificate or confirm its official validity.
         </div>
       </div>
+    </section>
 
-      <div class="document-heading">
-        Certificate Document
-        <span>Document Preview</span>
-      </div>
+    <!-- DEMO ADS -->
+    <section class="ad-section" aria-label="Demonstration advertisements">
+      <div class="ad-label">Advertisement · Demonstration</div>
 
-      <img
-        id="certificateImage"
-        class="preview"
-        src="IMI.jpg"
-        alt="Certificate document preview"
-        hidden
-      >
+      <div class="ad-grid">
+        <div class="ad-card">
+          <small>Demo Advertisement</small>
+          <strong>Education &amp; Training</strong>
+          <p>Information about educational programs and training.</p>
+        </div>
 
-      <div id="imagePlaceholder" class="placeholder">
-        <div>
-          <strong>Certificate image unavailable</strong><br>
-          Add the image file named <strong>IMI.jpg</strong>
-          to the same GitHub folder as index.html.
+        <div class="ad-card">
+          <small>Demo Advertisement</small>
+          <strong>Professional Development</strong>
+          <p>Explore learning resources and career development.</p>
         </div>
       </div>
-    </div>
+    </section>
   </section>
+
 </main>
 
 <footer>
   <div class="footer-title">Certificate Verification Portal</div>
   <div>Academic Document Search Service</div>
+  <div style="margin-top:8px">Demo interface · Not an official verification service</div>
 </footer>
 
 <script>
-const validSerial = "LPQHSE-25A911";
+(function () {
+  // Demo serial number only; not connected to an official database.
+  const validSerial = "LPQHSE-25A11";
 
-const form = document.getElementById("searchForm");
-const input = document.getElementById("serial");
-const result = document.getElementById("result");
-const error = document.getElementById("error");
-const img = document.getElementById("certificateImage");
-const placeholder = document.getElementById("imagePlaceholder");
+  const form = document.getElementById("searchForm");
+  const input = document.getElementById("serial");
+  const searchView = document.getElementById("searchView");
+  const resultsView = document.getElementById("resultsView");
+  const error = document.getElementById("error");
+  const backButton = document.getElementById("backButton");
+  const resultSerial = document.getElementById("resultSerial");
+  const img = document.getElementById("certificateImage");
+  const placeholder = document.getElementById("imagePlaceholder");
 
-function showCertificateImage() {
-  img.hidden = true;
-  placeholder.style.display = "none";
-
-  img.onload = function () {
-    img.hidden = false;
-    placeholder.style.display = "none";
-  };
-
-  img.onerror = function () {
-    img.hidden = true;
-    placeholder.style.display = "flex";
-  };
-
-  // Reload the existing certificate image.
-  img.src = "IMI.jpg";
-}
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const value = input.value.trim().toUpperCase();
-
-  result.style.display = "none";
-  error.style.display = "none";
-
-  if (value !== validSerial) {
-    error.style.display = "block";
-    error.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-    return;
+  function showView(view) {
+    searchView.classList.toggle("active", view === "search");
+    resultsView.classList.toggle("active", view === "results");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  result.style.display = "block";
-  showCertificateImage();
+  function showCertificateImage() {
+    img.hidden = true;
+    placeholder.style.display = "flex";
 
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+    img.onload = function () {
+      img.hidden = false;
+      placeholder.style.display = "none";
+    };
+
+    img.onerror = function () {
+      img.hidden = true;
+      placeholder.style.display = "flex";
+    };
+
+    // Reload the image from the same folder as index.html.
+    img.src = "IMI.jpg";
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const value = input.value.trim().toUpperCase();
+    error.style.display = "none";
+
+    if (value !== validSerial) {
+      error.style.display = "block";
+      error.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+      return;
+    }
+
+    resultSerial.textContent = value;
+    showCertificateImage();
+    showView("results");
+
+    // Update the URL fragment so the result view can be revisited.
+    history.replaceState(null, "", "#results");
   });
-});
+
+  backButton.addEventListener("click", function () {
+    showView("search");
+    error.style.display = "none";
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+    input.focus({ preventScroll: true });
+  });
+
+  // Support direct opening of the results fragment.
+  if (window.location.hash === "#results") {
+    input.value = validSerial;
+    resultSerial.textContent = validSerial;
+    showCertificateImage();
+    showView("results");
+  }
+})();
 </script>
 
 </body>
 </html>
+```
