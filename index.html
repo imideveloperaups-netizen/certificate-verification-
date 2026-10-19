@@ -3,489 +3,883 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#102746">
-<title>Certificate Search Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMI Developer | Certificate Verification</title>
 
 <style>
 :root {
-  --navy:#102746;
-  --navy-light:#193c63;
-  --gold:#c6a45b;
-  --text:#1c2e45;
-  --muted:#718096;
-  --border:#e1e7ef;
-  --background:#f4f6f9;
+  --navy: #102746;
+  --navy2: #183b64;
+  --gold: #c8a65d;
+  --bg: #f2f5f9;
+  --text: #26364a;
+  --muted: #728096;
+  --border: #dfe5ed;
+  --white: #ffffff;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--background);
-  color:var(--text);
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-header{
-  background:var(--navy);
-  color:white;
-  border-bottom:4px solid var(--gold);
-}
-.header-inner{
-  max-width:1120px;
-  margin:auto;
-  padding:24px 26px;
-  display:flex;
-  align-items:center;
-  gap:17px;
-}
-.logo{
-  width:55px;height:55px;flex-shrink:0;
-  border:1px solid rgba(198,164,91,.8);
-  border-radius:9px;
-  display:grid;place-items:center;
-  color:#e2c783;
-  background:rgba(255,255,255,.04);
-  font-size:29px;
-}
-.header-text h1{margin:0 0 7px;font-size:21px;font-weight:600}
-.header-text p{
-  margin:0;color:#c5d0de;font-size:11px;
-  letter-spacing:1.7px;line-height:1.7;
-}
-main{
-  width:calc(100% - 32px);
-  max-width:760px;
-  margin:55px auto 65px;
-  flex:1;
-}
-.view{display:none}
-.view.active{display:block}
-.intro{text-align:center;margin-bottom:32px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  color:#92702f;font-size:11px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;
-}
-.eyebrow:before,.eyebrow:after{
-  content:"";width:22px;height:1px;background:var(--gold);
-}
-h2{
-  margin:17px 0 12px;
-  font-size:clamp(26px,4vw,34px);
-  line-height:1.25;color:var(--navy);
-}
-.subtitle{
-  max-width:490px;margin:auto;color:var(--muted);
-  font-size:14px;line-height:1.8;
-}
-.search-card{
-  background:#fff;padding:27px;
-  border:1px solid var(--border);border-radius:10px;
-  box-shadow:0 12px 35px rgba(16,39,70,.055);
-}
-.field-label{
-  display:block;margin-bottom:11px;font-size:12px;
-  font-weight:700;color:#35475e;letter-spacing:.3px;
-}
-.search{
-  display:flex;gap:10px;padding:6px;
-  border:1px solid #d5deea;border-radius:7px;background:#fff;
-}
-.search:focus-within{
-  border-color:#54769d;
-  box-shadow:0 0 0 3px rgba(25,60,99,.08);
-}
-.search input{
-  flex:1;min-width:0;border:0;outline:0;
-  padding:12px 11px;font:inherit;font-size:14px;
-  color:var(--text);background:transparent;
-}
-.search input::placeholder{color:#9aa6b5}
-.search button{
-  display:inline-flex;align-items:center;justify-content:center;
-  gap:9px;min-height:45px;padding:0 24px;border:0;
-  border-radius:5px;background:var(--navy);color:white;
-  font-size:13px;font-weight:700;cursor:pointer;
-}
-.search button:hover{background:var(--navy-light)}
-.search-hint{
-  margin:12px 0 0;font-size:11px;line-height:1.7;color:#8793a3;
-}
-.search-hint span{color:#65758a;font-weight:600}
-.error{
-  display:none;margin-top:18px;padding:15px 17px;
-  background:#fff5f4;border:1px solid #efceca;
-  border-left:4px solid #bd5148;border-radius:6px;
-  color:#8d302a;font-size:13px;line-height:1.7;
-}
-.error strong{display:block;margin-bottom:3px}
 
-/* RESULTS PAGE */
-.results-main{max-width:900px}
-.breadcrumb{
-  font-size:12px;color:#7b889a;margin-bottom:18px;
+* {
+  box-sizing: border-box;
 }
-.results-toolbar{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:12px;margin-bottom:20px;
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
 }
-.toolbar-title{
-  font-size:11px;font-weight:700;
-  color:#7b889a;letter-spacing:1.5px;
+
+button, input {
+  font: inherit;
 }
-.back-button{
-  padding:11px 15px;background:#fff;
-  color:var(--navy);border:1px solid #d5deea;
-  border-radius:5px;font-size:12px;font-weight:700;
-  cursor:pointer;
+
+button {
+  cursor: pointer;
 }
-.back-button:hover{background:#edf2f8}
-.result-card{
-  background:#fff;border:1px solid var(--border);
-  border-radius:8px;overflow:hidden;
-  box-shadow:0 8px 28px rgba(16,39,70,.05);
+
+/* SHARED HEADER */
+
+.site-header {
+  background: var(--navy);
+  color: white;
+  border-bottom: 4px solid var(--gold);
 }
-.result-header{
-  padding:25px;
-  background:#fbfcfe;border-bottom:1px solid var(--border);
+
+.header-inner {
+  max-width: 1120px;
+  margin: auto;
+  min-height: 82px;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
-.result-kicker{
-  color:#8793a3;font-size:10px;font-weight:700;
-  letter-spacing:1.6px;text-transform:uppercase;
+
+.logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  background: white;
+  border-radius: 5px;
+  padding: 3px;
 }
-.result-header h2{
-  margin:13px 0 9px;font-size:25px;
+
+.brand-name {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: .7px;
 }
-.result-description{
-  color:#718096;font-size:13px;line-height:1.8;
+
+.brand-subtitle {
+  color: #d5deea;
+  font-size: 12px;
+  margin-top: 5px;
 }
-.record-body{padding:25px}
-.record-title{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;margin-bottom:20px;
+
+.header-right {
+  margin-left: auto;
+  text-align: right;
+  color: #e2e9f1;
+  font-size: 12px;
+  line-height: 1.6;
 }
-.record-title h3{margin:0;color:var(--navy);font-size:16px}
-.demo-tag{
-  padding:7px 10px;border-radius:4px;
-  background:#fff4df;border:1px solid #ead6a8;
-  color:#79551a;font-size:10px;font-weight:700;
+
+/* PAGE SWITCHING */
+
+.page {
+  display: none;
+  min-height: calc(100vh - 82px);
 }
-.details{
-  display:grid;grid-template-columns:1fr 1fr;gap:13px;
+
+.page.active {
+  display: block;
 }
-.detail-item{
-  min-width:0;padding:16px;
-  background:#f7f9fc;border:1px solid #e4eaf2;border-radius:5px;
+
+/* SEARCH PAGE */
+
+.search-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 58px 20px 35px;
 }
-.detail-label{
-  display:block;margin-bottom:10px;color:#7b889a;
-  font-size:10px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;
+
+.breadcrumb {
+  color: #77869a;
+  font-size: 12px;
+  margin-bottom: 25px;
 }
-.detail-value{
-  display:block;color:#243c59;font-size:14px;
-  font-weight:700;overflow-wrap:anywhere;
+
+.search-heading {
+  text-align: center;
+  margin-bottom: 30px;
 }
-.section-heading{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:10px;margin:29px 0 14px;padding-bottom:13px;
-  border-bottom:1px solid var(--border);
-  color:var(--navy);font-size:13px;font-weight:700;
+
+.search-heading .eyebrow {
+  color: #a18445;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-.section-heading span{color:#8793a3;font-size:11px;font-weight:400}
-.document-frame{
-  min-height:300px;padding:20px;
-  display:flex;align-items:center;justify-content:center;
-  background:#fafbfd;border:1px dashed #c8d3e0;border-radius:5px;
+
+.search-heading h1 {
+  color: var(--navy);
+  font-size: clamp(27px, 4vw, 38px);
+  margin: 13px 0;
 }
-.document-frame img{
-  display:block;width:100%;height:auto;max-height:850px;
-  object-fit:contain;background:white;
+
+.search-heading p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 590px;
+  margin: auto;
 }
-.image-placeholder{
-  color:#7b889a;text-align:center;
-  font-size:13px;line-height:1.9;
+
+.search-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 690px;
+  margin: 0 auto;
+  box-shadow: 0 8px 28px rgba(16, 39, 70, .06);
 }
-.image-placeholder strong{color:#35475e}
-.disclaimer{
-  margin-top:18px;padding:13px 15px;
-  background:#f7f9fc;border:1px solid #e1e7ef;
-  border-radius:5px;color:#718096;
-  font-size:11px;line-height:1.8;
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #293e58;
 }
-.ad-label{
-  margin:27px 0 11px;text-align:center;
-  color:#8995a5;font-size:9px;letter-spacing:1.5px;
+
+.input-row {
+  display: flex;
+  gap: 10px;
 }
-.ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.ad-card{
-  min-height:105px;padding:18px;
-  background:white;border:1px solid var(--border);border-radius:6px;
+
+#certificateId {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cfd8e4;
+  border-radius: 5px;
+  padding: 15px 14px;
+  outline: none;
+  background: #fff;
+  color: var(--navy);
+  transition: border .2s, box-shadow .2s;
 }
-.ad-card small{
-  display:block;margin-bottom:9px;color:#8995a5;
-  font-size:9px;letter-spacing:1px;
+
+#certificateId:focus {
+  border-color: #597ba5;
+  box-shadow: 0 0 0 3px rgba(54, 97, 148, .12);
 }
-.ad-card strong{display:block;margin-bottom:7px;color:#35475e;font-size:13px}
-.ad-card p{margin:0;color:#8793a3;font-size:11px;line-height:1.7}
-footer{
-  padding:25px 16px;border-top:1px solid #e2e7ee;
-  background:#fff;text-align:center;color:#8995a5;
-  font-size:11px;line-height:1.8;
+
+.search-button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 5px;
+  background: var(--navy);
+  color: white;
+  font-weight: 700;
+  padding: 0 25px;
+  transition: background .2s;
 }
-.footer-title{color:#516178;font-weight:700;margin-bottom:5px}
-@media(max-width:550px){
-  .header-inner{padding:20px 17px;gap:13px}
-  .logo{width:46px;height:46px;font-size:24px}
-  .header-text h1{font-size:17px}
-  .header-text p{font-size:9px;letter-spacing:1px}
-  main{margin:38px auto 45px}
-  .intro{margin-bottom:25px}
-  .search-card{padding:18px}
-  .search{gap:4px;padding:4px}
-  .search input{padding:11px 7px;font-size:12px}
-  .search button{min-height:42px;padding:0 12px;font-size:12px}
-  .results-toolbar{align-items:flex-start}
-  .result-header,.record-body{padding:18px}
-  .result-header h2{font-size:21px}
-  .details,.ad-grid{grid-template-columns:1fr}
-  .document-frame{min-height:230px;padding:12px}
+
+.search-button:hover {
+  background: var(--navy2);
 }
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{scroll-behavior:auto!important}
+
+.search-error {
+  display: none;
+  color: #a72c2c;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.search-help {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-top: 1px solid #edf0f4;
+  padding-top: 18px;
+  margin-top: 22px;
+  color: #748197;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.info-symbol {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #9aa8b9;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 17px;
+  font-weight: 700;
+}
+
+.search-footer {
+  text-align: center;
+  color: #8490a0;
+  font-size: 12px;
+  line-height: 1.8;
+  padding: 25px 15px 35px;
+}
+
+/* VERIFICATION PAGE */
+
+.verification-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px 50px;
+}
+
+.result-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+
+.back-button {
+  background: white;
+  border: 1px solid #cfd8e4;
+  border-radius: 5px;
+  color: var(--navy);
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.back-button:hover {
+  background: #edf2f8;
+}
+
+.page-label {
+  color: #77869a;
+  font-size: 12px;
+}
+
+.result-title {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+.result-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 25px;
+}
+
+.status-panel {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  border-radius: 7px;
+  padding: 23px;
+  margin-bottom: 22px;
+}
+
+.status-icon {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #f6f0e2;
+  color: #8d6d2f;
+  border-radius: 50%;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.status-title {
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.status-description {
+  color: #758196;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.demo-tag {
+  display: inline-block;
+  margin-top: 8px;
+  color: #80652e;
+  background: #fbf5e8;
+  border: 1px solid #e9d9b6;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .6px;
+}
+
+.details-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.details-heading {
+  background: #f9fafc;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 22px;
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detail-item {
+  min-width: 0;
+  padding: 18px 22px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.detail-item:nth-child(odd) {
+  border-right: 1px solid #edf0f4;
+}
+
+.detail-label {
+  color: #8490a0;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.detail-value {
+  color: #273b55;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.certificate-image-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.certificate-image-card h2 {
+  color: var(--navy);
+  font-size: 16px;
+  margin: 0 0 7px;
+}
+
+.certificate-image-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.certificate-placeholder {
+  min-height: 210px;
+  border: 1px dashed #b8c4d3;
+  border-radius: 5px;
+  background: #f9fbfd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: #8490a0;
+}
+
+.certificate-placeholder .file-icon {
+  font-size: 35px;
+  margin-bottom: 12px;
+  color: #8294a9;
+}
+
+.certificate-placeholder strong {
+  color: #51647c;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.certificate-placeholder span {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.certificate-preview {
+  display: none;
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  background: #f9fbfd;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.demo-notice {
+  border: 1px solid #eadbb9;
+  background: #fffaf0;
+  color: #725b2c;
+  border-radius: 5px;
+  padding: 15px 17px;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.demo-notice strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.result-footer {
+  background: var(--navy);
+  color: #dbe4ef;
+  text-align: center;
+  padding: 25px 18px;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.result-footer strong {
+  color: white;
+}
+
+/* DEMO ADVERTISEMENTS */
+
+.ad-section {
+  margin: 28px 0 0;
+}
+
+.ad-section-title {
+  color: #929dad;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.ad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ad-box {
+  background: #fff;
+  border: 1px solid #e1e6ed;
+  border-radius: 6px;
+  padding: 17px;
+  min-height: 94px;
+}
+
+.ad-label {
+  display: inline-block;
+  border: 1px solid #e0e5ec;
+  color: #929dad;
+  padding: 3px 5px;
+  font-size: 9px;
+  margin-bottom: 8px;
+}
+
+.ad-box strong {
+  display: block;
+  color: #52657c;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.ad-box p {
+  color: #929dad;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .header-inner {
+    padding: 13px 15px;
+    min-height: 72px;
+  }
+
+  .logo {
+    width: 43px;
+    height: 43px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .brand-subtitle {
+    font-size: 10px;
+  }
+
+  .header-right {
+    font-size: 10px;
+  }
+
+  .search-main {
+    padding: 35px 15px 25px;
+  }
+
+  .search-card {
+    padding: 21px 17px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .search-button {
+    min-height: 48px;
+  }
+
+  .verification-main {
+    padding: 23px 14px 35px;
+  }
+
+  .status-panel {
+    padding: 17px;
+    gap: 12px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-item {
+    padding: 15px 18px;
+  }
+
+  .detail-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .ad-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
   <div class="header-inner">
-    <div class="logo" aria-hidden="true">✓</div>
-    <div class="header-text">
-      <h1>Certificate Verification</h1>
-      <p>ACADEMIC DOCUMENT VERIFICATION PORTAL</p>
+    <img class="logo" src="IMI.jpg" alt="IMI logo"
+         onerror="this.style.display='none'">
+
+    <div>
+      <div class="brand-name">IMI DEVELOPER</div>
+      <div class="brand-subtitle">Digital Certificate Services</div>
+    </div>
+
+    <div class="header-right">
+      CERTIFICATE SERVICES<br>
+      Online Verification
     </div>
   </div>
 </header>
 
-<main id="searchPage" class="view active">
-  <section class="intro">
-    <div class="eyebrow">Verification Service</div>
-    <h2>Verify Your Certificate</h2>
-    <p class="subtitle">
-      Enter the certificate serial number below to search
-      for the corresponding certificate record.
-    </p>
-  </section>
+<!-- PAGE 1: SEARCH -->
 
-  <section class="search-card" aria-label="Certificate search">
-    <label class="field-label" for="serial">
-      Certificate Serial Number
-    </label>
+<main id="searchPage" class="page active">
+  <section class="search-main">
 
-    <form class="search" id="searchForm">
-      <input
-        id="serial"
-        type="search"
-        placeholder="Search for certificate verification"
-        autocomplete="off"
-        autocapitalize="characters"
-        required
-      >
+    <div class="breadcrumb">Home / Certificate Services / Verification</div>
 
-      <button type="submit">
-        <svg width="17" height="17" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round"
-          aria-hidden="true">
-          <circle cx="11" cy="11" r="7"></circle>
-          <path d="m20 20-4-4"></path>
-        </svg>
-        Search
-      </button>
-    </form>
-
-    <p class="search-hint">
-      <span>Note:</span>
-      Enter the serial number exactly as printed on your certificate.
-    </p>
-  </section>
-
-  <div id="error" class="error" role="alert">
-    <strong>No matching record found</strong>
-    Please check the certificate serial number and try again.
-  </div>
-</main>
-
-<main id="resultsPage" class="view results-main">
-  <div class="breadcrumb">Home / Search / Results</div>
-
-  <div class="results-toolbar">
-    <div class="toolbar-title">DOCUMENT SEARCH RESULTS</div>
-    <button type="button" class="back-button" id="backButton">
-      &#8592; Back to Search
-    </button>
-  </div>
-
-  <section class="result-card">
-    <div class="result-header">
-      <div class="result-kicker">Search Results</div>
-      <h2>Certificate Record</h2>
-      <div class="result-description">
-        Record details for the reference entered in the search field.
-      </div>
+    <div class="search-heading">
+      <div class="eyebrow">Certificate Services</div>
+      <h1>Certificate Verification</h1>
+      <p>
+        Search for a certificate record using its identification number.
+        Enter the certificate ID below to view the corresponding record.
+      </p>
     </div>
 
-    <div class="record-body">
-      <div class="record-title">
-        <h3>Record Information</h3>
-        <span class="demo-tag">DEMONSTRATION RECORD</span>
-      </div>
+    <form class="search-card" id="searchForm">
+      <label class="form-label" for="certificateId">
+        Certificate Identification Number
+      </label>
 
-      <div class="details">
-        <div class="detail-item">
-          <span class="detail-label">Serial Number</span>
-          <span class="detail-value" id="resultSerial">—</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Document Type</span>
-          <span class="detail-value">Certificate</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Search Reference</span>
-          <span class="detail-value" id="recordReference">—</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Preview Status</span>
-          <span class="detail-value">Document Preview</span>
-        </div>
-      </div>
+      <div class="input-row">
+        <input
+          id="certificateId"
+          name="certificateId"
+          type="text"
+          placeholder="Enter certificate ID"
+          autocomplete="off"
+          required
+        >
 
-      <div class="section-heading">
-        Certificate Document
-        <span>Document Preview</span>
-      </div>
-
-      <div class="document-frame">
-        <div class="image-placeholder" id="imagePlaceholder">
-          <strong>Certificate image placeholder</strong><br>
-          Add the image file named <strong>IMI.jpg</strong><br>
-          to the same folder as this HTML file.
-        </div>
-
-        <img id="certificateImage" src="IMI.jpg"
-             alt="Certificate image" hidden>
-      </div>
-
-      <div class="disclaimer">
-        This is a demonstration interface. It is not connected to an
-        official database and does not independently verify the
-        authenticity or validity of a certificate.
-      </div>
-
-      <div style="margin-top:20px">
-        <button type="button" class="back-button" id="backButtonBottom">
-          &#8592; Back to Search
+        <button class="search-button" type="submit">
+          Search
         </button>
       </div>
-    </div>
+
+      <div class="search-error" id="searchError" role="alert">
+        No matching demonstration record was found. Please check the ID.
+      </div>
+
+      <div class="search-help">
+        <span class="info-symbol">i</span>
+        <span>
+          Enter the certificate number exactly as printed on the document.
+          This website preview uses a demonstration record and is not connected
+          to an official verification database.
+        </span>
+      </div>
+    </form>
+
   </section>
 
-  <div class="ad-label">ADVERTISEMENT · DEMONSTRATION</div>
-
-  <section class="ad-grid">
-    <div class="ad-card">
-      <small>DEMO ADVERTISEMENT</small>
-      <strong>Education &amp; Training</strong>
-      <p>Educational information and learning resources.</p>
-    </div>
-    <div class="ad-card">
-      <small>DEMO ADVERTISEMENT</small>
-      <strong>Professional Development</strong>
-      <p>Training resources and career development information.</p>
-    </div>
-  </section>
+  <div class="search-footer">
+    IMI Developer — Certificate Services<br>
+    Demonstration website interface
+  </div>
 </main>
 
-<footer>
-  <div class="footer-title">Certificate Verification Portal</div>
-  <div>Academic Document Search Service</div>
-  <div>Demonstration interface</div>
-</footer>
+<!-- PAGE 2: SEPARATE VERIFICATION INTERFACE -->
+
+<main id="verificationPage" class="page">
+  <section class="verification-main">
+
+    <div class="result-topline">
+      <button class="back-button" id="backButton" type="button">
+        &#8592; Back to Search
+      </button>
+
+      <div class="page-label">
+        Certificate Services / Record Details
+      </div>
+    </div>
+
+    <h1 class="result-title">Verification Record</h1>
+    <p class="result-subtitle">
+      Certificate record details and identification information.
+    </p>
+
+    <section class="status-panel">
+      <div class="status-icon">&#10003;</div>
+
+      <div>
+        <div class="status-title">Demonstration Record Found</div>
+        <div class="status-description">
+          The entered ID matches the sample record configured for this website
+          preview.
+        </div>
+        <span class="demo-tag">DEMO PREVIEW — NOT OFFICIAL VERIFICATION</span>
+      </div>
+    </section>
+
+    <section class="details-card">
+      <div class="details-heading">Certificate Information</div>
+
+      <div class="details-grid">
+
+        <div class="detail-item">
+          <div class="detail-label">Certificate ID</div>
+          <div class="detail-value" id="resultId">LPQHSE-25A11</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Record Status</div>
+          <div class="detail-value">Sample Record</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Candidate Name</div>
+          <div class="detail-value">MORAD EZZAKRAOUY</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Certificate / Qualification</div>
+          <div class="detail-value">Licence Professionnelle QHSE</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Institution</div>
+          <div class="detail-value">
+            Institut de Management et d'Informatique
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Issue Date</div>
+          <div class="detail-value">17 September 2026</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="certificate-image-card">
+      <h2>Certificate Document</h2>
+      <p>
+        Space reserved for the certificate image associated with this sample
+        record.
+      </p>
+
+      <!--
+        To display your certificate image:
+        1. Put it in the same folder as index.html.
+        2. Replace CERTIFICATE-IMAGE.jpg below with its exact filename.
+      -->
+
+      <div class="certificate-placeholder" id="certificatePlaceholder">
+        <div class="file-icon">&#128196;</div>
+        <strong>Certificate Image Preview</strong>
+        <span>
+          Certificate image has not been added yet.<br>
+          Add your image filename in the code to display it here.
+        </span>
+      </div>
+
+      <img
+        id="certificatePreview"
+        class="certificate-preview"
+        src="CERTIFICATE-IMAGE.jpg"
+        alt="Certificate document preview"
+        onload="this.style.display='block';document.getElementById('certificatePlaceholder').style.display='none';"
+        onerror="this.style.display='none';"
+      >
+    </section>
+
+    <div class="demo-notice">
+      <strong>Demonstration Notice</strong>
+      This page is a website design preview. The displayed record is sample
+      content and has not been verified against an official institutional
+      database. No official verification or authentication is performed.
+    </div>
+
+    <!-- DEMONSTRATION ADVERTISEMENT AREA -->
+
+    <section class="ad-section">
+      <div class="ad-section-title">Advertisement · Demo Area</div>
+
+      <div class="ad-grid">
+        <div class="ad-box">
+          <span class="ad-label">ADVERTISEMENT</span>
+          <strong>Education & Training</strong>
+          <p>Reserved space for a future educational announcement.</p>
+        </div>
+
+        <div class="ad-box">
+          <span class="ad-label">ADVERTISEMENT</span>
+          <strong>Professional Services</strong>
+          <p>Reserved space for a future promotional message.</p>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <footer class="result-footer">
+    <strong>IMI DEVELOPER</strong><br>
+    Certificate Services · Demonstration Interface<br>
+    This page does not represent an official verification service.
+  </footer>
+</main>
 
 <script>
-(function(){
-  const validSerial = "LPQHSE-25A11";
+(function () {
+  const VALID_ID = "LPQHSE-25A11";
 
   const searchPage = document.getElementById("searchPage");
-  const resultsPage = document.getElementById("resultsPage");
-  const form = document.getElementById("searchForm");
-  const input = document.getElementById("serial");
-  const error = document.getElementById("error");
-  const img = document.getElementById("certificateImage");
-  const placeholder = document.getElementById("imagePlaceholder");
+  const verificationPage = document.getElementById("verificationPage");
+  const searchForm = document.getElementById("searchForm");
+  const certificateInput = document.getElementById("certificateId");
+  const searchError = document.getElementById("searchError");
+  const resultId = document.getElementById("resultId");
+  const backButton = document.getElementById("backButton");
 
-  function showPage(page){
-    searchPage.classList.toggle("active", page === "search");
-    resultsPage.classList.toggle("active", page === "results");
-    window.scrollTo({top:0, behavior:"auto"});
-  }
+  function showSearch(updateHistory = true) {
+    verificationPage.classList.remove("active");
+    searchPage.classList.add("active");
 
-  function loadCertificateImage(){
-    img.hidden = true;
-    placeholder.hidden = false;
+    searchError.style.display = "none";
 
-    img.onload = function(){
-      img.hidden = false;
-      placeholder.hidden = true;
-    };
-
-    img.onerror = function(){
-      img.hidden = true;
-      placeholder.hidden = false;
-    };
-
-    img.src = "IMI.jpg";
-  }
-
-  function backToSearch(){
-    showPage("search");
-    error.style.display = "none";
-    history.replaceState(null, "", location.pathname + location.search);
-  }
-
-  form.addEventListener("submit", function(event){
-    event.preventDefault();
-
-    const value = input.value.trim().toUpperCase();
-    error.style.display = "none";
-
-    if(value !== validSerial){
-      error.style.display = "block";
-      error.scrollIntoView({behavior:"smooth", block:"nearest"});
-      return;
+    if (updateHistory) {
+      history.pushState({ page: "search" }, "", location.pathname);
     }
 
-    document.getElementById("resultSerial").textContent = value;
-    document.getElementById("recordReference").textContent = value;
+    window.scrollTo(0, 0);
+  }
 
-    loadCertificateImage();
-    history.replaceState(null, "", "#results");
-    showPage("results");
+  function showVerification(id, updateHistory = true) {
+    searchPage.classList.remove("active");
+    verificationPage.classList.add("active");
+
+    resultId.textContent = id;
+
+    if (updateHistory) {
+      history.pushState(
+        { page: "verification", id: id },
+        "",
+        "#verification"
+      );
+    }
+
+    window.scrollTo(0, 0);
+  }
+
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const enteredId = certificateInput.value.trim().toUpperCase();
+
+    searchError.style.display = "none";
+
+    if (enteredId === VALID_ID) {
+      showVerification(VALID_ID);
+    } else {
+      searchError.style.display = "block";
+    }
   });
 
-  document.getElementById("backButton").addEventListener("click", backToSearch);
-  document.getElementById("backButtonBottom").addEventListener("click", backToSearch);
+  backButton.addEventListener("click", function () {
+    showSearch();
+  });
 
-  if(location.hash === "#results"){
-    input.value = validSerial;
-    document.getElementById("resultSerial").textContent = validSerial;
-    document.getElementById("recordReference").textContent = validSerial;
-    loadCertificateImage();
-    showPage("results");
+  window.addEventListener("popstate", function (event) {
+    if (event.state && event.state.page === "verification") {
+      showVerification(event.state.id, false);
+    } else {
+      showSearch(false);
+    }
+  });
+
+  // Allow direct opening of the demonstration result view with #verification.
+  if (location.hash === "#verification") {
+    certificateInput.value = VALID_ID;
+    showVerification(VALID_ID, false);
   }
 })();
 </script>
