@@ -31,8 +31,6 @@ body {
 button, input { font: inherit; }
 button { cursor: pointer; }
 
-/* HEADER */
-
 .site-header {
   background: linear-gradient(115deg, #0c203b, #173b64);
   color: white;
@@ -72,16 +70,12 @@ button { cursor: pointer; }
   letter-spacing: 1px;
 }
 
-/* PAGE SWITCHING */
-
 .page {
   display: none;
   min-height: calc(100vh - 88px);
 }
 
 .page.active { display: block; }
-
-/* SEARCH PAGE */
 
 .search-main {
   max-width: 900px;
@@ -221,8 +215,6 @@ button { cursor: pointer; }
   padding: 28px 15px 35px;
 }
 
-/* VERIFICATION PAGE */
-
 .verification-main {
   max-width: 1000px;
   margin: 0 auto;
@@ -269,8 +261,6 @@ button { cursor: pointer; }
   line-height: 1.7;
   margin: 0 0 27px;
 }
-
-/* STATUS */
 
 .status-panel {
   display: flex;
@@ -324,8 +314,6 @@ button { cursor: pointer; }
   letter-spacing: .8px;
 }
 
-/* CERTIFICATE DETAILS */
-
 .details-card {
   background: white;
   border: 1px solid var(--border);
@@ -375,8 +363,6 @@ button { cursor: pointer; }
   overflow-wrap: anywhere;
   font-weight: 600;
 }
-
-/* CERTIFICATE IMAGE */
 
 .certificate-image-card {
   background: white;
@@ -441,8 +427,6 @@ button { cursor: pointer; }
   border-radius: 5px;
 }
 
-/* INFORMATION AREA */
-
 .ad-section { margin: 29px 0 0; }
 
 .ad-section-title {
@@ -492,22 +476,89 @@ button { cursor: pointer; }
   margin: 0;
 }
 
-/* FOOTER */
+/* INSTITUTIONAL FOOTER */
 
 .result-footer {
   background: linear-gradient(115deg, #0c203b, #173b64);
   color: #dbe4ef;
-  text-align: center;
-  padding: 27px 18px;
-  font-size: 11px;
-  line-height: 2;
   border-top: 3px solid var(--gold);
+  padding: 36px 20px 18px;
+  font-size: 12px;
+  line-height: 1.8;
 }
 
-.result-footer strong {
-  color: white;
-  font-size: 14px;
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  text-align: center;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
+
+.footer-brand strong {
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.footer-brand .footer-subtitle {
+  color: #e4c982;
+  font-size: 12px;
+  letter-spacing: .3px;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  padding: 27px 0;
+}
+
+.footer-column h3 {
+  color: #fff;
+  font-size: 12px;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.footer-line {
+  margin: 8px 0;
+  color: #dbe4ef;
+  overflow-wrap: anywhere;
+}
+
+.footer-key {
+  display: block;
+  color: #aebfd3;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  margin-bottom: 2px;
+}
+
+.result-footer a {
+  color: #f0d58d;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.result-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.16);
+  padding-top: 16px;
+  text-align: center;
+  color: #aebfd3;
+  font-size: 10px;
+  line-height: 1.8;
 }
 
 /* MOBILE */
@@ -520,6 +571,7 @@ button { cursor: pointer; }
 
   .brand-name { font-size: 17px; }
   .brand-subtitle { font-size: 10px; }
+
   .header-right {
     font-size: 9px;
     line-height: 1.7;
@@ -538,16 +590,19 @@ button { cursor: pointer; }
   }
 
   .status-title { font-size: 15px; }
-
   .details-grid { grid-template-columns: 1fr; }
-
   .detail-item { padding: 16px 18px; }
-
   .detail-item:nth-child(odd) { border-right: none; }
-
   .ad-grid { grid-template-columns: 1fr; }
-
   .certificate-image-card { padding: 18px; }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 0;
+  }
+
+  .result-footer { padding: 30px 20px 17px; }
 }
 </style>
 </head>
@@ -660,7 +715,6 @@ button { cursor: pointer; }
       <div class="details-heading">Certificate Information</div>
 
       <div class="details-grid">
-
         <div class="detail-item">
           <div class="detail-label">Certificate ID</div>
           <div class="detail-value" id="resultId">LPQHSE-25A911</div>
@@ -692,7 +746,6 @@ button { cursor: pointer; }
           <div class="detail-label">Issue Date</div>
           <div class="detail-value">17 September 2026</div>
         </div>
-
       </div>
     </section>
 
@@ -700,9 +753,7 @@ button { cursor: pointer; }
 
     <section class="certificate-image-card">
       <h2>Certificate Document</h2>
-      <p>
-        Certificate document associated with this record.
-      </p>
+      <p>Certificate document associated with this record.</p>
 
       <div class="certificate-placeholder" id="certificatePlaceholder">
         <div class="file-icon">&#128196;</div>
@@ -723,7 +774,7 @@ button { cursor: pointer; }
       >
     </section>
 
-    <!-- INFORMATION AREA -->
+    <!-- ADDITIONAL INFORMATION -->
 
     <section class="ad-section">
       <div class="ad-section-title">Additional Information</div>
@@ -745,9 +796,68 @@ button { cursor: pointer; }
 
   </section>
 
+  <!-- INSTITUTIONAL FOOTER -->
+
   <footer class="result-footer">
-    <strong>AUPS</strong><br>
-    Certificate Services · Academic Records
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <strong>AUPS</strong>
+        <div class="footer-subtitle">
+          Certificate Services · Academic Records
+        </div>
+        <div>Academic Records &amp; Certificate Verification</div>
+      </div>
+
+      <div class="footer-columns">
+
+        <section class="footer-column">
+          <h3>Institutional Information</h3>
+
+          <div class="footer-line">
+            <span class="footer-key">Official Website</span>
+            <a href="https://aups.r-o-o-t.net/" target="_blank" rel="noopener noreferrer">
+              aups.r-o-o-t.net
+            </a>
+          </div>
+
+          <div class="footer-line">
+            <span class="footer-key">Department</span>
+            Certificate Verification Office
+          </div>
+
+          <div class="footer-line">
+            <span class="footer-key">Service</span>
+            Academic Records &amp; Credential Verification
+          </div>
+        </section>
+
+        <section class="footer-column">
+          <h3>Contact &amp; Support</h3>
+
+          <div class="footer-line">
+            <span class="footer-key">Email</span>
+            <a href="mailto:verification@gmail.com">
+              verification@gmail.com
+            </a>
+          </div>
+
+          <div class="footer-line">
+            <span class="footer-key">Location</span>
+            Delaware, USA
+          </div>
+        </section>
+
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="footerYear">2026</span> AUPS — Certificate Services.
+        All rights reserved.
+        <br>
+        Academic Records &amp; Certificate Verification
+      </div>
+
+    </div>
   </footer>
 </main>
 
@@ -763,10 +873,12 @@ button { cursor: pointer; }
   const resultId = document.getElementById("resultId");
   const backButton = document.getElementById("backButton");
 
+  document.getElementById("footerYear").textContent =
+    new Date().getFullYear();
+
   function showSearch(updateHistory = true) {
     verificationPage.classList.remove("active");
     searchPage.classList.add("active");
-
     searchError.style.display = "none";
 
     if (updateHistory) {
@@ -779,7 +891,6 @@ button { cursor: pointer; }
   function showVerification(id, updateHistory = true) {
     searchPage.classList.remove("active");
     verificationPage.classList.add("active");
-
     resultId.textContent = id;
 
     if (updateHistory) {
@@ -797,7 +908,6 @@ button { cursor: pointer; }
     event.preventDefault();
 
     const enteredId = certificateInput.value.trim().toUpperCase();
-
     searchError.style.display = "none";
 
     if (enteredId === VALID_ID) {
@@ -819,7 +929,6 @@ button { cursor: pointer; }
     }
   });
 
-  // Direct access to the verification page using #verification.
   if (location.hash === "#verification") {
     certificateInput.value = VALID_ID;
     showVerification(VALID_ID, false);
