@@ -8,13 +8,15 @@
 <style>
 :root {
   --navy: #102746;
-  --navy2: #183b64;
+  --navy2: #1b416c;
   --gold: #c8a65d;
-  --bg: #f2f5f9;
+  --bg: #f3f6fa;
   --text: #26364a;
   --muted: #728096;
   --border: #dfe5ed;
   --white: #ffffff;
+  --green: #23794e;
+  --green-bg: #edf7f1;
 }
 
 * { box-sizing: border-box; }
@@ -29,51 +31,52 @@ body {
 button, input { font: inherit; }
 button { cursor: pointer; }
 
-/* SHARED HEADER */
+/* HEADER */
 
 .site-header {
-  background: var(--navy);
+  background: linear-gradient(115deg, #0c203b, #173b64);
   color: white;
   border-bottom: 4px solid var(--gold);
+  box-shadow: 0 3px 14px rgba(16,39,70,.12);
 }
 
 .header-inner {
   max-width: 1120px;
   margin: auto;
-  min-height: 82px;
-  padding: 15px 22px;
+  min-height: 88px;
+  padding: 16px 22px;
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-/* Logo removed from header and displayed below the verification details */
-
 .brand-name {
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: .7px;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
 }
 
 .brand-subtitle {
   color: #d5deea;
   font-size: 12px;
   margin-top: 5px;
+  letter-spacing: .3px;
 }
 
 .header-right {
   margin-left: auto;
   text-align: right;
   color: #e2e9f1;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 1px;
 }
 
 /* PAGE SWITCHING */
 
 .page {
   display: none;
-  min-height: calc(100vh - 82px);
+  min-height: calc(100vh - 88px);
 }
 
 .page.active { display: block; }
@@ -89,32 +92,33 @@ button { cursor: pointer; }
 .breadcrumb {
   color: #77869a;
   font-size: 12px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .search-heading {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 34px;
 }
 
 .search-heading .eyebrow {
   color: #a18445;
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2px;
+  font-size: 11px;
+  letter-spacing: 2.2px;
   text-transform: uppercase;
 }
 
 .search-heading h1 {
   color: var(--navy);
-  font-size: clamp(27px, 4vw, 38px);
-  margin: 13px 0;
+  font-size: clamp(28px, 4vw, 39px);
+  margin: 14px 0;
+  letter-spacing: -.7px;
 }
 
 .search-heading p {
   color: var(--muted);
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.8;
   max-width: 590px;
   margin: auto;
 }
@@ -122,18 +126,18 @@ button { cursor: pointer; }
 .search-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 30px;
+  border-radius: 10px;
+  padding: 32px;
   max-width: 690px;
   margin: 0 auto;
-  box-shadow: 0 8px 28px rgba(16, 39, 70, .06);
+  box-shadow: 0 12px 35px rgba(16,39,70,.07);
 }
 
 .form-label {
   display: block;
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 11px;
   color: #293e58;
 }
 
@@ -146,8 +150,8 @@ button { cursor: pointer; }
   width: 100%;
   min-width: 0;
   border: 1px solid #cfd8e4;
-  border-radius: 5px;
-  padding: 15px 14px;
+  border-radius: 6px;
+  padding: 16px 15px;
   outline: none;
   background: #fff;
   color: var(--navy);
@@ -156,39 +160,46 @@ button { cursor: pointer; }
 
 #certificateId:focus {
   border-color: #597ba5;
-  box-shadow: 0 0 0 3px rgba(54, 97, 148, .12);
+  box-shadow: 0 0 0 3px rgba(54,97,148,.13);
 }
 
 .search-button {
   flex-shrink: 0;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   background: var(--navy);
   color: white;
   font-weight: 700;
-  padding: 0 25px;
-  transition: background .2s;
+  padding: 0 28px;
+  transition: background .2s, transform .2s;
 }
 
-.search-button:hover { background: var(--navy2); }
+.search-button:hover {
+  background: var(--navy2);
+  transform: translateY(-1px);
+}
 
 .search-error {
   display: none;
   color: #a72c2c;
+  background: #fff3f3;
+  border: 1px solid #f0d0d0;
+  border-radius: 5px;
   font-size: 13px;
-  margin-top: 12px;
+  padding: 11px 13px;
+  margin-top: 13px;
 }
 
 .search-help {
   display: flex;
-  gap: 10px;
+  gap: 11px;
   align-items: flex-start;
   border-top: 1px solid #edf0f4;
-  padding-top: 18px;
-  margin-top: 22px;
+  padding-top: 19px;
+  margin-top: 23px;
   color: #748197;
   font-size: 12px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .info-symbol {
@@ -205,9 +216,9 @@ button { cursor: pointer; }
 .search-footer {
   text-align: center;
   color: #8490a0;
-  font-size: 12px;
-  line-height: 1.8;
-  padding: 25px 15px 35px;
+  font-size: 11px;
+  line-height: 1.9;
+  padding: 28px 15px 35px;
 }
 
 /* VERIFICATION PAGE */
@@ -215,7 +226,7 @@ button { cursor: pointer; }
 .verification-main {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 30px 20px 50px;
+  padding: 32px 20px 50px;
 }
 
 .result-topline {
@@ -224,17 +235,18 @@ button { cursor: pointer; }
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 23px;
+  margin-bottom: 25px;
 }
 
 .back-button {
   background: white;
   border: 1px solid #cfd8e4;
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--navy);
-  padding: 10px 15px;
-  font-size: 13px;
+  padding: 11px 16px;
+  font-size: 12px;
   font-weight: 700;
+  transition: background .2s;
 }
 
 .back-button:hover { background: #edf2f8; }
@@ -245,17 +257,20 @@ button { cursor: pointer; }
 }
 
 .result-title {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
   color: var(--navy);
-  font-size: clamp(25px, 4vw, 34px);
+  font-size: clamp(26px, 4vw, 35px);
+  letter-spacing: -.5px;
 }
 
 .result-subtitle {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 25px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0 0 27px;
 }
+
+/* STATUS */
 
 .status-panel {
   display: flex;
@@ -263,20 +278,21 @@ button { cursor: pointer; }
   gap: 17px;
   background: white;
   border: 1px solid var(--border);
-  border-left: 5px solid var(--gold);
-  border-radius: 7px;
-  padding: 23px;
-  margin-bottom: 22px;
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 23px;
+  box-shadow: 0 5px 18px rgba(16,39,70,.035);
 }
 
 .status-icon {
-  width: 47px;
-  height: 47px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  background: #f6f0e2;
-  color: #8d6d2f;
+  background: var(--green-bg);
+  color: var(--green);
   border-radius: 50%;
   font-size: 23px;
   font-weight: 700;
@@ -292,34 +308,37 @@ button { cursor: pointer; }
 .status-description {
   color: #758196;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .demo-tag {
   display: inline-block;
-  margin-top: 8px;
-  color: #80652e;
-  background: #fbf5e8;
-  border: 1px solid #e9d9b6;
-  padding: 5px 8px;
-  border-radius: 3px;
+  margin-top: 9px;
+  color: var(--green);
+  background: var(--green-bg);
+  border: 1px solid #cce5d6;
+  padding: 5px 9px;
+  border-radius: 4px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: .6px;
+  letter-spacing: .8px;
 }
+
+/* CERTIFICATE DETAILS */
 
 .details-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 22px;
+  margin-bottom: 23px;
+  box-shadow: 0 5px 18px rgba(16,39,70,.035);
 }
 
 .details-heading {
-  background: #f9fafc;
+  background: #f8fafc;
   border-bottom: 1px solid var(--border);
-  padding: 18px 22px;
+  padding: 19px 23px;
   color: var(--navy);
   font-size: 15px;
   font-weight: 700;
@@ -332,7 +351,7 @@ button { cursor: pointer; }
 
 .detail-item {
   min-width: 0;
-  padding: 18px 22px;
+  padding: 19px 23px;
   border-bottom: 1px solid #edf0f4;
 }
 
@@ -343,47 +362,48 @@ button { cursor: pointer; }
 .detail-label {
   color: #8490a0;
   text-transform: uppercase;
-  letter-spacing: .7px;
+  letter-spacing: .8px;
   font-size: 10px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 .detail-value {
   color: #273b55;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-wrap: anywhere;
   font-weight: 600;
 }
 
-/* IMAGE NOW APPEARS AT THE BOTTOM OF THE VERIFICATION RECORD */
+/* CERTIFICATE IMAGE */
 
 .certificate-image-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 22px;
-  margin-bottom: 22px;
+  border-radius: 8px;
+  padding: 23px;
+  margin-bottom: 23px;
+  box-shadow: 0 5px 18px rgba(16,39,70,.035);
 }
 
 .certificate-image-card h2 {
   color: var(--navy);
   font-size: 16px;
-  margin: 0 0 7px;
+  margin: 0 0 8px;
 }
 
 .certificate-image-card p {
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.6;
-  margin: 0 0 18px;
+  line-height: 1.7;
+  margin: 0 0 19px;
 }
 
 .certificate-placeholder {
   min-height: 210px;
   border: 1px dashed #b8c4d3;
-  border-radius: 5px;
+  border-radius: 6px;
   background: #f9fbfd;
   display: flex;
   flex-direction: column;
@@ -403,54 +423,27 @@ button { cursor: pointer; }
 .certificate-placeholder strong {
   color: #51647c;
   font-size: 13px;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
 .certificate-placeholder span {
   font-size: 11px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .certificate-preview {
   display: none;
   width: 100%;
-  max-height: 600px;
+  max-height: 650px;
   object-fit: contain;
   background: #f9fbfd;
   border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-.demo-notice {
-  border: 1px solid #eadbb9;
-  background: #fffaf0;
-  color: #725b2c;
   border-radius: 5px;
-  padding: 15px 17px;
-  font-size: 12px;
-  line-height: 1.8;
-  margin-bottom: 24px;
 }
 
-.demo-notice strong {
-  display: block;
-  margin-bottom: 4px;
-}
+/* INFORMATION AREA */
 
-.result-footer {
-  background: var(--navy);
-  color: #dbe4ef;
-  text-align: center;
-  padding: 25px 18px;
-  font-size: 11px;
-  line-height: 1.9;
-}
-
-.result-footer strong { color: white; }
-
-/* DEMONSTRATION ADVERTISEMENTS */
-
-.ad-section { margin: 28px 0 0; }
+.ad-section { margin: 29px 0 0; }
 
 .ad-section-title {
   color: #929dad;
@@ -458,7 +451,7 @@ button { cursor: pointer; }
   letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 13px;
 }
 
 .ad-grid {
@@ -470,8 +463,8 @@ button { cursor: pointer; }
 .ad-box {
   background: #fff;
   border: 1px solid #e1e6ed;
-  border-radius: 6px;
-  padding: 17px;
+  border-radius: 7px;
+  padding: 18px;
   min-height: 94px;
 }
 
@@ -479,23 +472,42 @@ button { cursor: pointer; }
   display: inline-block;
   border: 1px solid #e0e5ec;
   color: #929dad;
-  padding: 3px 5px;
+  padding: 4px 6px;
   font-size: 9px;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
+  border-radius: 3px;
 }
 
 .ad-box strong {
   display: block;
   color: #52657c;
   font-size: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .ad-box p {
   color: #929dad;
   font-size: 11px;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
+}
+
+/* FOOTER */
+
+.result-footer {
+  background: linear-gradient(115deg, #0c203b, #173b64);
+  color: #dbe4ef;
+  text-align: center;
+  padding: 27px 18px;
+  font-size: 11px;
+  line-height: 2;
+  border-top: 3px solid var(--gold);
+}
+
+.result-footer strong {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 /* MOBILE */
@@ -503,35 +515,39 @@ button { cursor: pointer; }
 @media (max-width: 600px) {
   .header-inner {
     padding: 13px 15px;
-    min-height: 72px;
+    min-height: 74px;
   }
 
-  .brand-name { font-size: 15px; }
+  .brand-name { font-size: 17px; }
   .brand-subtitle { font-size: 10px; }
-  .header-right { font-size: 10px; }
+  .header-right {
+    font-size: 9px;
+    line-height: 1.7;
+  }
 
   .search-main { padding: 35px 15px 25px; }
-
-  .search-card { padding: 21px 17px; }
-
+  .search-card { padding: 22px 17px; }
   .input-row { flex-direction: column; }
+  .search-button { min-height: 49px; }
 
-  .search-button { min-height: 48px; }
-
-  .verification-main { padding: 23px 14px 35px; }
+  .verification-main { padding: 24px 14px 35px; }
 
   .status-panel {
-    padding: 17px;
-    gap: 12px;
+    padding: 18px;
+    gap: 13px;
   }
+
+  .status-title { font-size: 15px; }
 
   .details-grid { grid-template-columns: 1fr; }
 
-  .detail-item { padding: 15px 18px; }
+  .detail-item { padding: 16px 18px; }
 
   .detail-item:nth-child(odd) { border-right: none; }
 
   .ad-grid { grid-template-columns: 1fr; }
+
+  .certificate-image-card { padding: 18px; }
 }
 </style>
 </head>
@@ -540,9 +556,6 @@ button { cursor: pointer; }
 
 <header class="site-header">
   <div class="header-inner">
-
-    <!-- IMI.jpg removed from the header -->
-
     <div>
       <div class="brand-name">AUPS</div>
       <div class="brand-subtitle">Digital Certificate Services</div>
@@ -590,15 +603,15 @@ button { cursor: pointer; }
       </div>
 
       <div class="search-error" id="searchError" role="alert">
-        No matching demonstration record was found. Please check the ID.
+        No matching certificate record was found. Please check the identification number.
       </div>
 
       <div class="search-help">
         <span class="info-symbol">i</span>
         <span>
           Enter the certificate number exactly as printed on the document.
-          This website preview uses a demonstration record and is not connected
-          to an official verification database.
+          The corresponding certificate record will be displayed when a matching
+          identification number is found.
         </span>
       </div>
     </form>
@@ -606,12 +619,12 @@ button { cursor: pointer; }
   </section>
 
   <div class="search-footer">
-    IMI Developer — Certificate Services<br>
-    Demonstration website interface
+    AUPS — Certificate Services<br>
+    Certificate Verification Portal
   </div>
 </main>
 
-<!-- PAGE 2: VERIFICATION INTERFACE -->
+<!-- PAGE 2: VERIFICATION -->
 
 <main id="verificationPage" class="page">
   <section class="verification-main">
@@ -635,12 +648,11 @@ button { cursor: pointer; }
       <div class="status-icon">&#10003;</div>
 
       <div>
-        <div class="status-title">Demonstration Record Found</div>
+        <div class="status-title">Certificate Record Found</div>
         <div class="status-description">
-          The entered ID matches the sample record configured for this website
-          preview.
+          A matching certificate identification number was found in the AUPS records.
         </div>
-        <span class="demo-tag"> OFFICIAL VERIFICATION</span>
+        <span class="demo-tag">RECORD LOCATED</span>
       </div>
     </section>
 
@@ -651,12 +663,12 @@ button { cursor: pointer; }
 
         <div class="detail-item">
           <div class="detail-label">Certificate ID</div>
-          <div class="detail-value" id="resultId">LPQHSE-25A11</div>
+          <div class="detail-value" id="resultId">LPQHSE-25A911</div>
         </div>
 
         <div class="detail-item">
           <div class="detail-label">Record Status</div>
-          <div class="detail-value">Sample Record</div>
+          <div class="detail-value">Record Located</div>
         </div>
 
         <div class="detail-item">
@@ -684,17 +696,17 @@ button { cursor: pointer; }
       </div>
     </section>
 
-    <!-- IMI.jpg IS DISPLAYED HERE, AFTER THE VERIFICATION CODE IS ACCEPTED -->
+    <!-- CERTIFICATE IMAGE -->
 
     <section class="certificate-image-card">
       <h2>Certificate Document</h2>
       <p>
-        Image associated with this demonstration record.
+        Certificate document associated with this record.
       </p>
 
       <div class="certificate-placeholder" id="certificatePlaceholder">
         <div class="file-icon">&#128196;</div>
-        <strong>Image Preview</strong>
+        <strong>Certificate Image</strong>
         <span>
           The image could not be loaded.<br>
           Make sure IMI.jpg is in the same folder as index.html.
@@ -705,27 +717,28 @@ button { cursor: pointer; }
         id="certificatePreview"
         class="certificate-preview"
         src="IMI.jpg"
-        alt="IMI image preview"
+        alt="Certificate document"
         onload="this.style.display='block';document.getElementById('certificatePlaceholder').style.display='none';"
         onerror="this.style.display='none';document.getElementById('certificatePlaceholder').style.display='flex';"
       >
     </section>
-    <!-- DEMONSTRATION ADVERTISEMENT AREA -->
+
+    <!-- INFORMATION AREA -->
 
     <section class="ad-section">
-      <div class="ad-section-title">Advertisement · </div>
+      <div class="ad-section-title">Additional Information</div>
 
       <div class="ad-grid">
         <div class="ad-box">
-          <span class="ad-label">ADVERTISEMENT</span>
+          <span class="ad-label">INFORMATION</span>
           <strong>Education &amp; Training</strong>
-          <p>Reserved space for a future educational announcement.</p>
+          <p>Educational information and institutional announcements.</p>
         </div>
 
         <div class="ad-box">
-          <span class="ad-label">ADVERTISEMENT</span>
+          <span class="ad-label">INFORMATION</span>
           <strong>Professional Services</strong>
-          <p>Reserved space for a future promotional message.</p>
+          <p>Information about professional services and activities.</p>
         </div>
       </div>
     </section>
@@ -734,7 +747,7 @@ button { cursor: pointer; }
 
   <footer class="result-footer">
     <strong>AUPS</strong><br>
-    Certificate Services · Demonstration Interface<br>
+    Certificate Services · Academic Records
   </footer>
 </main>
 
@@ -806,7 +819,7 @@ button { cursor: pointer; }
     }
   });
 
-  // Allow direct opening of the demonstration result view with #verification.
+  // Direct access to the verification page using #verification.
   if (location.hash === "#verification") {
     certificateInput.value = VALID_ID;
     showVerification(VALID_ID, false);
